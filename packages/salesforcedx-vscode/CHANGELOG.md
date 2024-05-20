@@ -1,3 +1,11 @@
+# 60.14.0 - May 22, 2024
+
+## Fixed
+
+#### docs
+
+- Code Builder licenses for add-ons ([PR #5605](https://github.com/forcedotcom/salesforcedx-vscode/pull/5605))
+
 # 60.13.0 - May 15, 2024
 
 ## Fixed
