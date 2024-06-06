@@ -279,20 +279,6 @@ async function run() {
           postComment(noOldSfdx);
           cliValid = false;
         }
-        if (nodeVersions.length > 0) {
-          if (!(await isAnyVersionValid(new Date())(nodeVersions))) {
-            const nodeVersionMessage = getFile(
-              "../../messages/unsupported-node.md",
-              {
-                THE_AUTHOR: author,
-                NODE_VERSION: nodeVersions.join("`, `"),
-              }
-            );
-            postComment(nodeVersionMessage);
-            closeIssue();
-            cliValid = false;
-          }
-        }
 
         if (cliValid) {
           console.log("A valid CLI version is provided!");

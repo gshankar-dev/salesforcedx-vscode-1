@@ -12,7 +12,6 @@ const child_process_1 = require("child_process");
 const semver = require("semver");
 const fs_1 = require("fs");
 const path = require("path");
-const nodeVersions_1 = require("./nodeVersions");
 async function run() {
     try {
         const issue = github_1.context.payload.issue;
@@ -225,17 +224,6 @@ async function run() {
                     });
                     postComment(noOldSfdx);
                     cliValid = false;
-                }
-                if (nodeVersions.length > 0) {
-                    if (!(await (0, nodeVersions_1.isAnyVersionValid)(new Date())(nodeVersions))) {
-                        const nodeVersionMessage = getFile("../../messages/unsupported-node.md", {
-                            THE_AUTHOR: author,
-                            NODE_VERSION: nodeVersions.join("`, `"),
-                        });
-                        postComment(nodeVersionMessage);
-                        closeIssue();
-                        cliValid = false;
-                    }
                 }
                 if (cliValid) {
                     console.log("A valid CLI version is provided!");
