@@ -6,6 +6,8 @@
 
 - 🎉 We're excited to announce that our extensions now support Java 21! 🚀 ([PR #5621](https://github.com/forcedotcom/salesforcedx-vscode/pull/5621))
 
+- We produced a new version of the Apex Language Server to match 250 standards.  When you activate the new version of the Apex extension for the first time, there might be a noticeable delay while your workspace is upgraded to 250 Apex artifacts and your project is fully indexed. ([PR #5635](https://github.com/forcedotcom/salesforcedx-vscode/pull/5635))
+
 ## Fixed
 
 #### salesforcedx-vscode-apex
