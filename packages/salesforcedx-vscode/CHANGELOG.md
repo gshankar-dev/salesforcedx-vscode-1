@@ -4,7 +4,7 @@
 
 #### salesforcedx-vscode-apex
 
-- We added support for Java 21 to our extensions. ([PR #5621](https://github.com/forcedotcom/salesforcedx-vscode/pull/5621))
+- 🎉 We're excited to announce that our extensions now support Java 21! 🚀 ([PR #5621](https://github.com/forcedotcom/salesforcedx-vscode/pull/5621))
 
 ## Fixed
 
