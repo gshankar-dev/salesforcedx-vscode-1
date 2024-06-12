@@ -1,22 +1,16 @@
-# 61.0.0 - June 13, 2024
+# 61.0.0 - June 14, 2024
 
 ## Added
 
 #### salesforcedx-vscode-apex
 
-- Add java v 21 support for apex lsp ([PR #5621](https://github.com/forcedotcom/salesforcedx-vscode/pull/5621))
+- We added support for Java 21 to our extensions. ([PR #5621](https://github.com/forcedotcom/salesforcedx-vscode/pull/5621))
 
 ## Fixed
 
 #### salesforcedx-vscode-apex
 
-- Apex lsp for 250 ([PR #5635](https://github.com/forcedotcom/salesforcedx-vscode/pull/5635))
-
-#### salesforcedx-vscode-core
-
-- Bump dx templates to v61 ([PR #5633](https://github.com/forcedotcom/salesforcedx-vscode/pull/5633))
-
-- Bump @salesforce/apex-node to v6.1.2 ([PR #5629](https://github.com/forcedotcom/salesforcedx-vscode/pull/5629))
+- We fixed an issue where the output of the "Apex Code Coverage by Class" table in the Apex test results were missing when "Store Only Aggregated Code Coverage" is enabled in the Apex Test Execution settings. Thank you [Matthias Rolke](https://github.com/amtrack) for bringing this to our attention. ([PR #370](https://github.com/forcedotcom/salesforcedx-apex/pull/370), [PR #5629](https://github.com/forcedotcom/salesforcedx-vscode/pull/5629))
 
 # 60.15.0 - May 29, 2024
 
