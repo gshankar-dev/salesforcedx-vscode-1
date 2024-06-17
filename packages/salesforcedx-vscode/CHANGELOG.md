@@ -1,3 +1,11 @@
+# 61.1.0 - June 19, 2024
+
+## Fixed
+
+#### docs
+
+- Remove trailing slashes from URLs in docs to improve SEO ([PR #5632](https://github.com/forcedotcom/salesforcedx-vscode/pull/5632))
+
 # 61.0.1 - June 14, 2024
 
 ## Added
