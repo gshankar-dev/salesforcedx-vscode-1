@@ -14,7 +14,7 @@
 
 #### docs
 
-- We removed trailing slashes from URLs in docs to improve SEO. ([PR #5632](https://github.com/forcedotcom/salesforcedx-vscode/pull/5632))
+- We removed trailing slashes from URLs in docs to improve SEO. Thank you [Jason Rogers](https://github.com/jmrog) for your work on this PR. ([PR #5632](https://github.com/forcedotcom/salesforcedx-vscode/pull/5632))
 
 #### salesforcedx-vscode-soql
 
