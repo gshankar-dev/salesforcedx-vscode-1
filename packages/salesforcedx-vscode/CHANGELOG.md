@@ -1,3 +1,25 @@
+# 61.2.0 - June 26, 2024
+
+## Fixed
+
+#### docs
+
+- Java setup update ([PR #5655](https://github.com/forcedotcom/salesforcedx-vscode/pull/5655))
+
+- Apex debugger intro update ([PR #5649](https://github.com/forcedotcom/salesforcedx-vscode/pull/5649))
+
+#### salesforcedx-vscode
+
+- Java setup update ([PR #5655](https://github.com/forcedotcom/salesforcedx-vscode/pull/5655))
+
+#### salesforcedx-vscode-core
+
+- Bump sdr to resolve the issue of deploying MD files ([PR #5650](https://github.com/forcedotcom/salesforcedx-vscode/pull/5650))
+
+#### salesforcedx-vscode-expanded
+
+- Java setup update ([PR #5655](https://github.com/forcedotcom/salesforcedx-vscode/pull/5655))
+
 # 61.1.2 - June 21, 2024
 
 ## Added
