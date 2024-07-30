@@ -10,6 +10,7 @@ import { INTERNAL_FILTER } from '../../constants';
 
 export const isInternalUser = (): boolean => {
   const osHostName = os.hostname();
-  console.log(osHostName);
+  const userInfo = os.userInfo();
+  console.log(userInfo);
   return osHostName.endsWith(INTERNAL_FILTER) ? true : false;
 };
