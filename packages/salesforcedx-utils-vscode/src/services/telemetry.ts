@@ -23,7 +23,8 @@ import { AppInsights } from '../telemetry/reporters/appInsights';
 import { LogStream } from '../telemetry/reporters/logStream';
 import { LogStreamConfig } from '../telemetry/reporters/logStreamConfig';
 import { TelemetryFile } from '../telemetry/reporters/telemetryFile';
-import { isInternalUser } from '../telemetry/utils/isInternalUser';
+import { checkDevLocalLogging } from '../telemetry/utils/devModeUtils';
+import { isInternalHost } from '../telemetry/utils/isInternal';
 
 type CommandMetric = {
   extensionName: string;
@@ -92,7 +93,7 @@ export class TelemetryService {
   private reporters: TelemetryReporter[] = [];
   private aiKey = DEFAULT_AIKEY;
   private version: string = '';
-  public isInternalUser: boolean = false;
+  public isInternal: boolean = false;
 
   /**
    * Retrieve Telemetry Service according to the extension name.
@@ -127,7 +128,7 @@ export class TelemetryService {
     this.extensionName = name;
     this.version = version;
     this.aiKey = aiKey || this.aiKey;
-    this.isInternalUser = isInternalUser();
+    this.isInternal = isInternalHost();
 
     this.checkCliTelemetry()
       .then(async cliEnabled => {
@@ -144,9 +145,14 @@ export class TelemetryService {
 
     // TelemetryReporter is not initialized if user has disabled telemetry setting.
     if (this.reporters.length === 0 && (await this.isTelemetryEnabled())) {
-      if (!isDevMode) {
+      if(isDevMode) {
+        // The new TelemetryFile reporter is run in Dev mode, and only
+        // requires the advanced setting to be set re: configuration.
+        if (checkDevLocalLogging(this.extensionName)) {
+          this.reporters.push(new TelemetryFile(this.extensionName));
+        }
+      } else {
         console.log('adding AppInsights reporter.');
-
         this.reporters.push(
           new AppInsights(
             this.getTelemetryReporterName(),
@@ -155,7 +161,6 @@ export class TelemetryService {
             true
           )
         );
-
         // Assuming this fs streaming is more efficient than the appendFile technique that
         // the new TelemetryFile reporter uses, I am keeping the logic in place for which
         // reporter is used when.  The original log stream functionality only worked under
@@ -167,19 +172,6 @@ export class TelemetryService {
               LogStreamConfig.logFilePath()
             )
           );
-        }
-      } else {
-        // Dev Mode
-        //
-        // The new TelemetryFile reporter is run in Dev mode, and only
-        // requires the advanced setting to be set re: configuration.
-        if (
-          Settings.SettingsService.isAdvancedSettingEnabledFor(
-            this.extensionName,
-            Settings.AdvancedSettings.LOCAL_TELEMETRY_LOGGING
-          )
-        ) {
-          this.reporters.push(new TelemetryFile(this.extensionName));
         }
       }
     }

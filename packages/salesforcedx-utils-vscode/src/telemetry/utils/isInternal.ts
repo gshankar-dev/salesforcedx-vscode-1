@@ -8,9 +8,8 @@
 import * as os from 'os';
 import { INTERNAL_FILTER } from '../../constants';
 
-export const isInternalUser = (): boolean => {
+export const isInternalHost = (): boolean => {
   const osHostName = os.hostname();
-  const userInfo = os.userInfo();
-  console.log(userInfo);
   return osHostName.endsWith(INTERNAL_FILTER) ? true : false;
 };
+
