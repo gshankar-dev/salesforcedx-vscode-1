@@ -13,6 +13,7 @@
     "@actions/github": "^5.1.1",
     "node": "^18.11.0",
     "npm": "^9",
+    "os": "0.1.2",
     "semver": "^7.5.2",
     "ts-node": "10.9.1"
   },
@@ -120,5 +121,8 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "salesforcedx-vscode-core.advanced": {
+    "localTelemetryLogging": "true"
   }
 }

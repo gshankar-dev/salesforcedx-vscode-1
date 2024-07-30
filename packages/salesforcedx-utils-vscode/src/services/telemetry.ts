@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023, salesforce.com, inc.
+ * Copyright (c) 2024, salesforce.com, inc.
  * All rights reserved.
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
@@ -23,6 +23,7 @@ import { AppInsights } from '../telemetry/reporters/appInsights';
 import { LogStream } from '../telemetry/reporters/logStream';
 import { LogStreamConfig } from '../telemetry/reporters/logStreamConfig';
 import { TelemetryFile } from '../telemetry/reporters/telemetryFile';
+import { isInternalUser } from '../telemetry/utils/isInternalUser';
 
 type CommandMetric = {
   extensionName: string;
@@ -91,6 +92,8 @@ export class TelemetryService {
   private reporters: TelemetryReporter[] = [];
   private aiKey = DEFAULT_AIKEY;
   private version: string = '';
+  public isInternalUser: boolean = false;
+
   /**
    * Retrieve Telemetry Service according to the extension name.
    * If no extension name provided, return the instance for core extension by default
@@ -124,6 +127,7 @@ export class TelemetryService {
     this.extensionName = name;
     this.version = version;
     this.aiKey = aiKey || this.aiKey;
+    this.isInternalUser = isInternalUser();
 
     this.checkCliTelemetry()
       .then(async cliEnabled => {
