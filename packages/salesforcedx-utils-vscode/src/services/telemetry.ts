@@ -10,10 +10,8 @@ import { ActivationInfo } from '..';
 import {
   DEFAULT_AIKEY,
   SFDX_CORE_CONFIGURATION_NAME,
-  SFDX_CORE_EXTENSION_NAME,
-  SFDX_EXTENSION_PACK_NAME
+  SFDX_CORE_EXTENSION_NAME
 } from '../constants';
-import * as Settings from '../settings';
 import {
   disableCLITelemetry,
   isCLITelemetryAllowed
@@ -25,6 +23,7 @@ import { LogStreamConfig } from '../telemetry/reporters/logStreamConfig';
 import { TelemetryFile } from '../telemetry/reporters/telemetryFile';
 import { checkDevLocalLogging } from '../telemetry/utils/devModeUtils';
 import { isInternalHost } from '../telemetry/utils/isInternal';
+import { determineReporters } from '../telemetry/reporters/determineReporters';
 
 type CommandMetric = {
   extensionName: string;
@@ -145,50 +144,10 @@ export class TelemetryService {
 
     // TelemetryReporter is not initialized if user has disabled telemetry setting.
     if (this.reporters.length === 0 && (await this.isTelemetryEnabled())) {
-      if(isDevMode) {
-        // The new TelemetryFile reporter is run in Dev mode, and only
-        // requires the advanced setting to be set re: configuration.
-        if (checkDevLocalLogging(this.extensionName)) {
-          this.reporters.push(new TelemetryFile(this.extensionName));
-        }
-      } else {
-        console.log('adding AppInsights reporter.');
-        this.reporters.push(
-          new AppInsights(
-            this.getTelemetryReporterName(),
-            this.version,
-            this.aiKey,
-            true
-          )
-        );
-        // Assuming this fs streaming is more efficient than the appendFile technique that
-        // the new TelemetryFile reporter uses, I am keeping the logic in place for which
-        // reporter is used when.  The original log stream functionality only worked under
-        // the same conditions as the AppInsights capabilities, but with additional configuration.
-        if (LogStreamConfig.isEnabledFor(this.extensionName)) {
-          this.reporters.push(
-            new LogStream(
-              this.getTelemetryReporterName(),
-              LogStreamConfig.logFilePath()
-            )
-          );
-        }
-      }
+      determineReporters(isDevMode, this.extensionName, this.version, this.aiKey);
     }
 
     this.extensionContext.subscriptions.push(...this.reporters);
-  }
-
-  /**
-   * Helper to get the name for telemetryReporter
-   * if the extension from extension pack, use salesforcedx-vscode
-   * otherwise use the extension name
-   * exported only for unit test
-   */
-  public getTelemetryReporterName(): string {
-    return this.extensionName.startsWith(SFDX_EXTENSION_PACK_NAME)
-      ? SFDX_EXTENSION_PACK_NAME
-      : this.extensionName;
   }
 
   public getReporters(): TelemetryReporter[] {

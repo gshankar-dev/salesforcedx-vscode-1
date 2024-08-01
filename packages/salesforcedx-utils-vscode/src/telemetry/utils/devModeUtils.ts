@@ -14,9 +14,3 @@ export const checkDevLocalLogging = (extName: string) => {
   );
   return isLocalLogging;
 };
-
-export const reportToLocalFile = (extName: string) => {
-  if(checkDevLocalLogging(extName)) {
-    
-  }
-};
