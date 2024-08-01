@@ -17,13 +17,8 @@ import {
   isCLITelemetryAllowed
 } from '../telemetry/cliConfiguration';
 import { TelemetryReporter } from '../telemetry/interfaces/telemetryReporter';
-import { AppInsights } from '../telemetry/reporters/appInsights';
-import { LogStream } from '../telemetry/reporters/logStream';
-import { LogStreamConfig } from '../telemetry/reporters/logStreamConfig';
-import { TelemetryFile } from '../telemetry/reporters/telemetryFile';
-import { checkDevLocalLogging } from '../telemetry/utils/devModeUtils';
-import { isInternalHost } from '../telemetry/utils/isInternal';
 import { determineReporters } from '../telemetry/reporters/determineReporters';
+import { isInternalHost } from '../telemetry/utils/isInternal';
 
 type CommandMetric = {
   extensionName: string;
@@ -144,7 +139,8 @@ export class TelemetryService {
 
     // TelemetryReporter is not initialized if user has disabled telemetry setting.
     if (this.reporters.length === 0 && (await this.isTelemetryEnabled())) {
-      determineReporters(isDevMode, this.extensionName, this.version, this.aiKey);
+      const reporters = determineReporters(isDevMode, this.extensionName, this.version, this.aiKey);
+      this.reporters.push(...reporters);
     }
 
     this.extensionContext.subscriptions.push(...this.reporters);

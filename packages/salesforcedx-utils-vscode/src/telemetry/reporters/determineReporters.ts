@@ -58,7 +58,7 @@ export const determineReporters = (
  * if the extension from extension pack, use salesforcedx-vscode
  * otherwise use the extension name
  */
-export const getTelemetryReporterName = (extName: string) => {
+export const getTelemetryReporterName = (extName: string): string => {
   return extName.startsWith(SFDX_EXTENSION_PACK_NAME)
     ? SFDX_EXTENSION_PACK_NAME
     : extName;
