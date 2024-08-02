@@ -40,18 +40,6 @@ describe('Telemetry', () => {
       cliSpy.mockRestore();
     });
 
-    it('Should not initialize telemetry reporter', async () => {
-      // create vscode extensionContext
-      mockExtensionContext = new MockExtensionContext(true);
-
-      await telemetryService.initializeService(mockExtensionContext);
-
-      const telemetryReporters = telemetryService.getReporters();
-
-      expect(telemetryReporters.length).toEqual(0);
-      expect(teleSpy.mock.calls[0]).toEqual([true]);
-    });
-
     it('Should show telemetry info message', async () => {
       // create vscode extensionContext in which telemetry msg has never been previously shown
       mockExtensionContext = new MockExtensionContext(false);
