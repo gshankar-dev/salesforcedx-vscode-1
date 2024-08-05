@@ -1,3 +1,21 @@
+# 61.8.0 - August 7, 2024
+
+## Added
+
+#### docs
+
+- Include code analyzer in expanded pack ([PR #5702](https://github.com/forcedotcom/salesforcedx-vscode/pull/5702))
+
+#### salesforcedx-vscode-expanded
+
+- Include code analyzer in expanded pack ([PR #5702](https://github.com/forcedotcom/salesforcedx-vscode/pull/5702))
+
+## Fixed
+
+#### salesforcedx-vscode-core
+
+- Handle and report unhandled rejections ([PR #5699](https://github.com/forcedotcom/salesforcedx-vscode/pull/5699))
+
 # 61.7.0 - July 31, 2024
 
 ## Added
