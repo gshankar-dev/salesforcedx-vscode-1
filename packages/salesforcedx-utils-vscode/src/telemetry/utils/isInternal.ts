@@ -12,4 +12,3 @@ export const isInternalHost = (): boolean => {
   const osHostName = os.hostname();
   return osHostName.endsWith(INTERNAL_FILTER) ? true : false;
 };
-

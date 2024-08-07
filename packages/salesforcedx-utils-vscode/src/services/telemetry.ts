@@ -6,7 +6,7 @@
  */
 import * as util from 'util';
 import { ExtensionContext, ExtensionMode, workspace } from 'vscode';
-import { ActivationInfo } from '..';
+import { ActivationInfo, AppInsights } from '..';
 import {
   DEFAULT_AIKEY,
   SFDX_CORE_CONFIGURATION_NAME,
@@ -17,7 +17,7 @@ import {
   isCLITelemetryAllowed
 } from '../telemetry/cliConfiguration';
 import { TelemetryReporter } from '../telemetry/interfaces/telemetryReporter';
-import { determineReporters } from '../telemetry/reporters/determineReporters';
+import { determineReporters, getTelemetryReporterName } from '../telemetry/reporters/determineReporters';
 import { isInternalHost } from '../telemetry/utils/isInternal';
 
 type CommandMetric = {
@@ -137,10 +137,21 @@ export class TelemetryService {
     const isDevMode =
       extensionContext.extensionMode !== ExtensionMode.Production;
 
-    // TelemetryReporter is not initialized if user has disabled telemetry setting.
-    if (this.reporters.length === 0 && (await this.isTelemetryEnabled())) {
-      const reporters = determineReporters(isDevMode, this.extensionName, this.version, this.aiKey);
-      this.reporters.push(...reporters);
+    if(this.reporters.length === 0) {
+      if (this.isInternal) {
+        this.reporters.push(new AppInsights(
+          getTelemetryReporterName(this.extensionName),
+          this.version,
+          this.aiKey,
+          true
+        ));
+      } else if(await this.isTelemetryEnabled()) {
+        const reporters = determineReporters(isDevMode, this.extensionName, this.version, this.aiKey);
+        this.reporters.push(...reporters);
+      } else {
+        // TelemetryReporter is not initialized if user has disabled telemetry setting.
+        return;
+      }
     }
 
     this.extensionContext.subscriptions.push(...this.reporters);
