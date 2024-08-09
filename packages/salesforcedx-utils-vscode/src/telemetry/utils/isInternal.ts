@@ -9,6 +9,5 @@ import * as os from 'os';
 import { INTERNAL_FILTER } from '../../constants';
 
 export const isInternalHost = (): boolean => {
-  const osHostName = os.hostname();
-  return osHostName.endsWith(INTERNAL_FILTER) ? true : false;
+  return os.hostname().endsWith(INTERNAL_FILTER) ? true : false;
 };

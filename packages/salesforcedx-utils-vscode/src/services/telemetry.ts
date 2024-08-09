@@ -88,6 +88,7 @@ export class TelemetryService {
   private aiKey = DEFAULT_AIKEY;
   private version: string = '';
   public isInternal: boolean = false;
+  public isDevMode: boolean = false;
 
   /**
    * Retrieve Telemetry Service according to the extension name.
@@ -106,7 +107,6 @@ export class TelemetryService {
   /**
    * Initialize Telemetry Service during extension activation.
    * @param extensionContext extension context
-   * @param extensionName extension name
    */
   public async initializeService(
     extensionContext: ExtensionContext
@@ -123,6 +123,8 @@ export class TelemetryService {
     this.version = version;
     this.aiKey = aiKey || this.aiKey;
     this.isInternal = isInternalHost();
+    this.isDevMode = extensionContext.extensionMode !== ExtensionMode.Production;
+    // isTelemetryEnabled
 
     this.checkCliTelemetry()
       .then(async cliEnabled => {
@@ -134,9 +136,6 @@ export class TelemetryService {
         console.log('Error initializing telemetry service: ' + error);
       });
 
-    const isDevMode =
-      extensionContext.extensionMode !== ExtensionMode.Production;
-
     if(this.reporters.length === 0) {
       if (this.isInternal) {
         this.reporters.push(new AppInsights(
@@ -146,15 +145,22 @@ export class TelemetryService {
           true
         ));
       } else if(await this.isTelemetryEnabled()) {
-        const reporters = determineReporters(isDevMode, this.extensionName, this.version, this.aiKey);
+        const reporters = determineReporters(this.isDevMode, this.extensionName, this.version, this.aiKey);
         this.reporters.push(...reporters);
       } else {
         // TelemetryReporter is not initialized if user has disabled telemetry setting.
         return;
       }
     }
-
+    const info = this.getTelemetryInfo();
+    console.log(info);
     this.extensionContext.subscriptions.push(...this.reporters);
+  }
+
+  public getTelemetryInfo() {
+    return {
+      isInternal: this.isInternal
+    };
   }
 
   public getReporters(): TelemetryReporter[] {

@@ -7,10 +7,9 @@
 
 import * as Settings from '../../../src/settings';
 
-export const checkDevLocalLogging = (extName: string) => {
-  const isLocalLogging = Settings.SettingsService.isAdvancedSettingEnabledFor(
+export const isLocalLogging = (extName: string) => {
+  return Settings.SettingsService.isAdvancedSettingEnabledFor(
     extName,
     Settings.AdvancedSettings.LOCAL_TELEMETRY_LOGGING
   );
-  return isLocalLogging;
 };

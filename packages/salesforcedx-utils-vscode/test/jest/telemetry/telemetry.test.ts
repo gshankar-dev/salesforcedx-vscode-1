@@ -4,6 +4,7 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
+import { ExtensionContext} from 'vscode';
 import { TelemetryService } from '../../../src';
 import { SFDX_CORE_EXTENSION_NAME } from '../../../src/constants';
 import { TelemetryServiceProvider } from '../../../src/services/telemetry';
@@ -70,6 +71,33 @@ describe('Telemetry', () => {
       const secondInstance =
         TelemetryServiceProvider.getInstance(extensionName);
       expect(secondInstance).toBe(firstInstance);
+    });
+
+    describe('initialize telemetry service', () => {
+      it('should initialize the telemetry service', () => {
+        const instance = TelemetryService.getInstance();
+        expect(instance).toBeInstanceOf(TelemetryService);
+      });
+
+      it('should initialize the telemetry service with the passed in extension name', () => {
+        const mockExtContext: ExtensionContext = {
+          extension: {
+            packageJSON: {
+              name: 'testExtension',
+              version: '0.0.0',
+              aiKey: 'test123'
+            }
+          },
+          subscriptions: {
+            push: jest.fn()
+          }
+        } as any as ExtensionContext;
+        const instance = TelemetryService.getInstance('testExtension')
+          .initializeService(mockExtContext)
+          .then(result => console.log(result));
+        console.log(instance);
+        // expect(instance.extensionName).toBe(extensionName);
+      });
     });
   });
 });

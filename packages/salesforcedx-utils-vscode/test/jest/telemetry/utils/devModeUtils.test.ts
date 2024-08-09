@@ -6,9 +6,9 @@
  */
 
 import * as Settings from '../../../../src/settings';
-import { checkDevLocalLogging } from '../../../../src/telemetry/utils/devModeUtils';
+import { isLocalLogging } from '../../../../src/telemetry/utils/devModeUtils';
 
-describe('checkDevLocalLogging', () => {
+describe('isLocalLogging', () => {
   let spySettingsService: jest.SpyInstance;
 
   beforeEach(() => {
@@ -23,10 +23,10 @@ describe('checkDevLocalLogging', () => {
 
   it('returns true when local logging is enabled', () => {
     spySettingsService.mockReturnValue(true);
-    expect(checkDevLocalLogging('extName')).toBe(true);
+    expect(isLocalLogging('extName')).toBe(true);
   });
 
   it('returns false when local logging is disabled', () => {
-    expect(checkDevLocalLogging('extName')).toBe(false);
+    expect(isLocalLogging('extName')).toBe(false);
   });
 });

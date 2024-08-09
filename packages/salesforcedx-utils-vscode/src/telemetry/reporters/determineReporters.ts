@@ -5,7 +5,7 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import { SFDX_EXTENSION_PACK_NAME } from '../../constants';
-import { checkDevLocalLogging } from '../../telemetry/utils/devModeUtils';
+import { isLocalLogging } from '../../telemetry/utils/devModeUtils';
 import { TelemetryReporter } from '../interfaces';
 import { AppInsights } from './appInsights';
 import { LogStream } from './logStream';
@@ -23,7 +23,7 @@ export const determineReporters = (
   const reporterName = getTelemetryReporterName(extName);
 
 
-  if(isDevMode && checkDevLocalLogging(extName)) {
+  if(isDevMode && isLocalLogging(extName)) {
     // The new TelemetryFile reporter is run in Dev mode, and only
     // requires the advanced setting to be set re: configuration.
     reporters.push(new TelemetryFile(extName));
