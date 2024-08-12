@@ -1,3 +1,29 @@
+# 61.9.0 - August 14, 2024
+
+## Added
+
+#### salesforcedx-vscode
+
+- Update vscode min supported version to 1.86 ([PR #5715](https://github.com/forcedotcom/salesforcedx-vscode/pull/5715))
+
+#### salesforcedx-vscode-expanded
+
+- Update vscode min supported version to 1.86 ([PR #5715](https://github.com/forcedotcom/salesforcedx-vscode/pull/5715))
+
+## Fixed
+
+#### docs
+
+- Docs/Gemfile & docs/Gemfile.lock to reduce vulnerabilities ([PR #5707](https://github.com/forcedotcom/salesforcedx-vscode/pull/5707))
+
+#### salesforcedx-vscode
+
+- Small clarifications in Marketplace READMEs ([PR #5716](https://github.com/forcedotcom/salesforcedx-vscode/pull/5716))
+
+#### salesforcedx-vscode-expanded
+
+- Small clarifications in Marketplace READMEs ([PR #5716](https://github.com/forcedotcom/salesforcedx-vscode/pull/5716))
+
 # 61.8.1 - August 8, 2024
 
 ## Added
