@@ -4,25 +4,23 @@
 
 #### salesforcedx-vscode
 
-- Update vscode min supported version to 1.86 ([PR #5715](https://github.com/forcedotcom/salesforcedx-vscode/pull/5715))
-
 #### salesforcedx-vscode-expanded
 
-- Update vscode min supported version to 1.86 ([PR #5715](https://github.com/forcedotcom/salesforcedx-vscode/pull/5715))
+- To use the Salesforce Extension Pack, you'll need to install Visual Studio Code version 1.86 or later. This is required for the pack to work correctly. ([PR #5715](https://github.com/forcedotcom/salesforcedx-vscode/pull/5715))
+
 
 ## Fixed
 
 #### docs
 
-- Docs/Gemfile & docs/Gemfile.lock to reduce vulnerabilities ([PR #5707](https://github.com/forcedotcom/salesforcedx-vscode/pull/5707))
+- We made some changes under the hood. ([PR #5707](https://github.com/forcedotcom/salesforcedx-vscode/pull/5707))
 
 #### salesforcedx-vscode
 
-- Small clarifications in Marketplace READMEs ([PR #5716](https://github.com/forcedotcom/salesforcedx-vscode/pull/5716))
-
 #### salesforcedx-vscode-expanded
 
-- Small clarifications in Marketplace READMEs ([PR #5716](https://github.com/forcedotcom/salesforcedx-vscode/pull/5716))
+- We’ve refreshed our READMEs and added more details about the extension pack. ([PR #5716](https://github.com/forcedotcom/salesforcedx-vscode/pull/5716))
+
 
 # 61.8.1 - August 8, 2024
 
