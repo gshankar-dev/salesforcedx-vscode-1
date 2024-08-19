@@ -6,7 +6,7 @@
  */
 import * as util from 'util';
 import { ExtensionContext, ExtensionMode, workspace } from 'vscode';
-import { ActivationInfo, AppInsights } from '..';
+import { ActivationInfo } from '..';
 import {
   DEFAULT_AIKEY,
   SFDX_CORE_CONFIGURATION_NAME,
@@ -17,7 +17,7 @@ import {
   isCLITelemetryAllowed
 } from '../telemetry/cliConfiguration';
 import { TelemetryReporter } from '../telemetry/interfaces/telemetryReporter';
-import { determineReporters, getTelemetryReporterName } from '../telemetry/reporters/determineReporters';
+import { determineReporters } from '../telemetry/reporters/determineReporters';
 import { isInternalHost } from '../telemetry/utils/isInternal';
 
 type CommandMetric = {
@@ -124,7 +124,6 @@ export class TelemetryService {
     this.aiKey = aiKey || this.aiKey;
     this.isInternal = isInternalHost();
     this.isDevMode = extensionContext.extensionMode !== ExtensionMode.Production;
-    // isTelemetryEnabled
 
     this.checkCliTelemetry()
       .then(async cliEnabled => {
@@ -136,30 +135,19 @@ export class TelemetryService {
         console.log('Error initializing telemetry service: ' + error);
       });
 
-    if(this.reporters.length === 0) {
-      if (this.isInternal) {
-        this.reporters.push(new AppInsights(
-          getTelemetryReporterName(this.extensionName),
-          this.version,
-          this.aiKey,
-          true
-        ));
-      } else if(await this.isTelemetryEnabled()) {
-        const reporters = determineReporters(this.isDevMode, this.extensionName, this.version, this.aiKey);
-        this.reporters.push(...reporters);
-      } else {
-        // TelemetryReporter is not initialized if user has disabled telemetry setting.
-        return;
-      }
+    if(this.reporters.length === 0 && (await this.isTelemetryEnabled())) {
+      const reporters = determineReporters(this.isDevMode, this.extensionName, this.version, this.aiKey);
+      this.reporters.push(...reporters);
     }
     const info = this.getTelemetryInfo();
     console.log(info);
     this.extensionContext.subscriptions.push(...this.reporters);
   }
-
+  // TODO potentially remove unnecessary
   public getTelemetryInfo() {
     return {
-      isInternal: this.isInternal
+      isInternal: this.isInternal,
+      isDev: this.isDevMode
     };
   }
 
@@ -168,10 +156,14 @@ export class TelemetryService {
   }
 
   public async isTelemetryEnabled(): Promise<boolean> {
-    return (
-      this.isTelemetryExtensionConfigurationEnabled() &&
-      (await this.checkCliTelemetry())
-    );
+    if (this.isInternal) {
+      return true;
+    } else {
+      return (
+        this.isTelemetryExtensionConfigurationEnabled() &&
+        (await this.checkCliTelemetry())
+      );
+    }
   }
 
   public async checkCliTelemetry(): Promise<boolean> {
