@@ -11,6 +11,43 @@ import {
 } from '@salesforce/salesforcedx-utils-vscode';
 import * as path from 'path';
 import * as vscode from 'vscode';
+
+console.log("Starting index.ts for Apex Extension");
+
+class Logger {
+  private static timestamps: Map<string, number> = new Map();
+
+  static logWithTimestamp(message: string) {
+    const now = new Date();
+    const timestamp = now.toISOString();
+    console.log(`[${timestamp}] ${message}`);
+  }
+
+  static startTiming(eventName: string) {
+    const now = new Date();
+    this.timestamps.set(eventName, now.getTime());
+    this.logWithTimestamp(`Started timing event: ${eventName}`);
+  }
+
+  static endTiming(eventName: string) {
+    const now = new Date();
+    const endTime = now.getTime();
+    const startTime = this.timestamps.get(eventName);
+
+    if (startTime) {
+      const duration = endTime - startTime;
+      this.logWithTimestamp(`Event ${eventName} took ${duration} ms`);
+      this.timestamps.delete(eventName); // Optionally clear the start time
+    } else {
+      this.logWithTimestamp(`No start time found for event: ${eventName}`);
+    }
+  }
+}
+
+Logger.startTiming('Import Apex related libraries');
+const importStart = process.hrtime();
+
+
 import { ApexLanguageClient } from './apexLanguageClient';
 import ApexLSPStatusBarItem from './apexLspStatusBarItem';
 import { CodeCoverage, StatusBarToggle } from './codecoverage';
@@ -47,10 +84,19 @@ import {
 import { nls } from './messages';
 import { retrieveEnableSyncInitJobs } from './settings';
 import { telemetryService } from './telemetry';
-import { getTestOutlineProvider, TestNode } from './views/testOutlineProvider';
+import { getTestOutlineProvider } from './views/testOutlineProvider';
 import { ApexTestRunner, TestRunType } from './views/testRunner';
 
+const importEnd = telemetryService.getEndHRTime(importStart);
+Logger.endTiming('Import Apex related libraries');
+telemetryService.sendEventData('importApexRelatedLibraries', undefined, {
+  activationTime: importEnd
+});
+
 export const activate = async (extensionContext: vscode.ExtensionContext) => {
+
+  Logger.startTiming('Activate Function');
+  const activateStart = process.hrtime();
   const activationTracker = new ActivationTracker(
     extensionContext,
     telemetryService
@@ -86,7 +132,9 @@ export const activate = async (extensionContext: vscode.ExtensionContext) => {
   await telemetryService.initializeService(extensionContext);
 
   // start the language server and client
+  Logger.startTiming('start the language server and client');
   await createLanguageClient(extensionContext, languageServerStatusBarItem);
+  Logger.endTiming('start the language server and client');
 
   // Javadoc support
   enableJavaDocSymbols();
@@ -94,7 +142,6 @@ export const activate = async (extensionContext: vscode.ExtensionContext) => {
   // Commands
   const commands = registerCommands();
   extensionContext.subscriptions.push(commands);
-
   extensionContext.subscriptions.push(registerTestView());
 
   const exportedApi = {
@@ -103,12 +150,19 @@ export const activate = async (extensionContext: vscode.ExtensionContext) => {
     getApexTests,
     languageClientUtils
   };
-
   void activationTracker.markActivationStop(new Date());
+  const activateEnd = telemetryService.getEndHRTime(activateStart);
+  Logger.endTiming('Activate Function');
+  telemetryService.sendEventData('Activate', undefined, {
+    activationTime: activateEnd
+  });
   return exportedApi;
 };
 
+
 const registerCommands = (): vscode.Disposable => {
+  Logger.startTiming('Register Commands');
+  const registerCommandsStart = process.hrtime();
   // Colorize code coverage
   const statusBarToggle = new StatusBarToggle();
   const colorizer = new CodeCoverage(statusBarToggle);
@@ -195,7 +249,11 @@ const registerCommands = (): vscode.Disposable => {
       'sf.launch.apex.replay.debugger.with.current.file',
       launchApexReplayDebuggerWithCurrentFile
     );
-
+  const registerCommandsEnd = telemetryService.getEndHRTime(registerCommandsStart);
+  Logger.endTiming('Register Commands');
+  telemetryService.sendEventData('registerCommands', undefined, {
+    activationTime: registerCommandsEnd
+  });
   return vscode.Disposable.from(
     anonApexDebugDelegateCmd,
     anonApexDebugDocumentCmd,
@@ -221,6 +279,8 @@ const registerCommands = (): vscode.Disposable => {
 };
 
 const registerTestView = (): vscode.Disposable => {
+  Logger.startTiming('Register Test View');
+  const registerTestViewStart = process.hrtime();
   const testOutlineProvider = getTestOutlineProvider();
   // Create TestRunner
   const testRunner = new ApexTestRunner(testOutlineProvider);
@@ -229,122 +289,143 @@ const registerTestView = (): vscode.Disposable => {
   const testViewItems = new Array<vscode.Disposable>();
 
   const testProvider = vscode.window.registerTreeDataProvider(
-    testOutlineProvider.getId(),
+    'sf.test.view',
     testOutlineProvider
   );
   testViewItems.push(testProvider);
 
   // Run Test Button on Test View command
   testViewItems.push(
-    vscode.commands.registerCommand(`${testOutlineProvider.getId()}.run`, () =>
+    vscode.commands.registerCommand('sf.test.view.run', () =>
       testRunner.runAllApexTests()
     )
   );
   // Show Error Message command
   testViewItems.push(
-    vscode.commands.registerCommand(
-      `${testOutlineProvider.getId()}.showError`,
-      (test: TestNode) => testRunner.showErrorMessage(test)
+    vscode.commands.registerCommand('sf.test.view.showError', test =>
+      testRunner.showErrorMessage(test)
     )
   );
   // Show Definition command
   testViewItems.push(
-    vscode.commands.registerCommand(
-      `${testOutlineProvider.getId()}.goToDefinition`,
-      (test: TestNode) => testRunner.showErrorMessage(test)
+    vscode.commands.registerCommand('sf.test.view.goToDefinition', test =>
+      testRunner.showErrorMessage(test)
     )
   );
   // Run Class Tests command
   testViewItems.push(
-    vscode.commands.registerCommand(
-      `${testOutlineProvider.getId()}.runClassTests`,
-      (test: TestNode) =>
-        testRunner.runApexTests([test.name], TestRunType.Class)
+    vscode.commands.registerCommand('sf.test.view.runClassTests', test =>
+      testRunner.runApexTests([test.name], TestRunType.Class)
     )
   );
   // Run Single Test command
   testViewItems.push(
-    vscode.commands.registerCommand(
-      `${testOutlineProvider.getId()}.runSingleTest`,
-      (test: TestNode) =>
-        testRunner.runApexTests([test.name], TestRunType.Method)
+    vscode.commands.registerCommand('sf.test.view.runSingleTest', test =>
+      testRunner.runApexTests([test.name], TestRunType.Method)
     )
   );
   // Refresh Test View command
   testViewItems.push(
-    vscode.commands.registerCommand(
-      `${testOutlineProvider.getId()}.refresh`,
-      () => {
-        if (languageClientUtils.getStatus().isReady()) {
-          return testOutlineProvider.refresh();
-        }
+    vscode.commands.registerCommand('sf.test.view.refresh', () => {
+      if (languageClientUtils.getStatus().isReady()) {
+        return testOutlineProvider.refresh();
       }
-    )
+    })
   );
-  // Collapse All Apex Tests command
-  testViewItems.push(
-    vscode.commands.registerCommand(
-      `${testOutlineProvider.getId()}.collapseAll`,
-      () => testOutlineProvider.collapseAll()
-    )
-  );
+  const registerTestViewEnd = telemetryService.getEndHRTime(registerTestViewStart);
+  Logger.endTiming('Register Test View');
+  telemetryService.sendEventData('registerTestView', undefined, {
+    activationTime: registerTestViewEnd
+  });
 
   return vscode.Disposable.from(...testViewItems);
 };
 
 export const deactivate = async () => {
+  const deactivateStart = process.hrtime();
+  Logger.startTiming('Deactivate');
   await languageClientUtils.getClientInstance()?.stop();
   telemetryService.sendExtensionDeactivationEvent();
+  const deactivateEnd = telemetryService.getEndHRTime(deactivateStart);
+  Logger.endTiming('Deactivate');
+  telemetryService.sendEventData('deactivate', undefined, {
+    activationTime: deactivateEnd
+  });
 };
 
 const createLanguageClient = async (
   extensionContext: vscode.ExtensionContext,
   languageServerStatusBarItem: ApexLSPStatusBarItem
 ): Promise<void> => {
+  Logger.startTiming('Create Language Client');
+  const createLanguageClientStart = process.hrtime();
   // Resolve any found orphan language servers
   void lsoh.resolveAnyFoundOrphanLanguageServers();
   // Initialize Apex language server
   try {
+    Logger.startTiming('ApexLSP Startup');
     const langClientHRStart = process.hrtime();
+
+    Logger.startTiming('Create Language Server');
+    const createLangServerStart = process.hrtime();
     languageClientUtils.setClientInstance(
       await languageServer.createLanguageServer(extensionContext)
     );
+    const createLangServerEnd = telemetryService.getEndHRTime(createLangServerStart); // Record the end time
+    Logger.endTiming('Create Language Server');
+    telemetryService.sendEventData('CreateLanguageServer', undefined, {
+      activationTime: createLangServerEnd
+    });
 
     const languageClient = languageClientUtils.getClientInstance();
 
     if (languageClient) {
-      languageClient.errorHandler?.addListener('error', (message: string) => {
+      languageClient.errorHandler?.addListener('error', message => {
         languageServerStatusBarItem.error(message);
       });
-      languageClient.errorHandler?.addListener(
-        'restarting',
-        (count: number) => {
-          languageServerStatusBarItem.error(
-            nls
-              .localize('apex_language_server_quit_and_restarting')
-              .replace('$N', `${count}`)
-          );
-        }
-      );
+      languageClient.errorHandler?.addListener('restarting', count => {
+        languageServerStatusBarItem.error(
+          nls
+            .localize('apex_language_server_quit_and_restarting')
+            .replace('$N', count)
+        );
+      });
       languageClient.errorHandler?.addListener('startFailed', () => {
         languageServerStatusBarItem.error(
           nls.localize('apex_language_server_failed_activate')
         );
       });
 
+
       // TODO: the client should not be undefined. We should refactor the code to
       // so there is no question as to whether the client is defined or not.
+      Logger.startTiming('Start Language Server');
+      const startLangServerStart = process.hrtime();
       await languageClient.start();
+      const startLangServerEnd = telemetryService.getEndHRTime(startLangServerStart); // Record the end time
+      Logger.endTiming('Start Language Server');
+      telemetryService.sendEventData('StartLanguageServer', undefined, {
+        activationTime: startLangServerEnd
+      });
+
       // Client is running
       const startTime = telemetryService.getEndHRTime(langClientHRStart); // Record the end time
+      Logger.endTiming('ApexLSP Startup');
       telemetryService.sendEventData('apexLSPStartup', undefined, {
         activationTime: startTime
       });
+      Logger.startTiming('First Index Done Handler');
+      const IndexDoneHandlerStart = process.hrtime();
       await indexerDoneHandler(
         retrieveEnableSyncInitJobs(),
         languageClient,
         languageServerStatusBarItem
       );
+      const IndexDoneHandlerEnd = telemetryService.getEndHRTime(IndexDoneHandlerStart); // Record the end time
+      telemetryService.sendEventData('firstIndexDoneHandler', undefined, {
+        activationTime: IndexDoneHandlerEnd
+      });
+      Logger.endTiming('First Index Done Handler')
       extensionContext.subscriptions.push(
         languageClientUtils.getClientInstance()!
       );
@@ -362,28 +443,26 @@ const createLanguageClient = async (
       );
     }
   } catch (e) {
-    let errorMessage = '';
-    if (typeof e === 'string') {
-      errorMessage = e;
-    } else if (e instanceof Error) {
-      errorMessage = e.message ?? nls.localize('unknown_error');
-    }
+    languageClientUtils.setStatus(ClientStatus.Error, e);
+    let eMsg =
+      typeof e === 'string' ? e : e.message ?? nls.localize('unknown_error');
     if (
-      errorMessage.includes(
-        nls.localize('wrong_java_version_text', SET_JAVA_DOC_LINK)
-      )
+      eMsg.includes(nls.localize('wrong_java_version_text', SET_JAVA_DOC_LINK))
     ) {
-      errorMessage = nls.localize('wrong_java_version_short');
+      eMsg = nls.localize('wrong_java_version_short');
     }
-    languageClientUtils.setStatus(ClientStatus.Error, errorMessage);
     languageServerStatusBarItem.error(
       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-      `${nls.localize(
-        'apex_language_server_failed_activate'
-      )} - ${errorMessage}`
+      `${nls.localize('apex_language_server_failed_activate')} - ${eMsg}`
     );
   }
+  const createLanguageClientEnd = telemetryService.getEndHRTime(createLanguageClientStart);
+  Logger.endTiming('Create Language Client');
+  telemetryService.sendEventData('createLanguageClient', undefined, {
+    activationTime: createLanguageClientEnd
+  });
 };
+
 
 // exported only for test
 export const indexerDoneHandler = async (
@@ -391,6 +470,8 @@ export const indexerDoneHandler = async (
   languageClient: ApexLanguageClient,
   languageServerStatusBarItem: ApexLSPStatusBarItem
 ) => {
+  const indexerDoneHandlerStart = process.hrtime();
+  Logger.startTiming('Second Index Done Handler');
   // Listener is useful only in async mode
   if (!enableSyncInitJobs) {
     // The listener should be set after languageClient is ready
@@ -409,4 +490,10 @@ export const indexerDoneHandler = async (
       languageServerStatusBarItem
     );
   }
+  Logger.endTiming('Second Index Done Handler');
+  const indexerDoneHandlerEnd = telemetryService.getEndHRTime(indexerDoneHandlerStart); // Record the end time
+  telemetryService.sendEventData('secondIndexerDoneHandler', undefined, {
+    activationTime: indexerDoneHandlerEnd
+  });
 };
+
