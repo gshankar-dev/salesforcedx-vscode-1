@@ -12,7 +12,7 @@ import {
 import * as path from 'path';
 import * as vscode from 'vscode';
 
-console.log("Starting index.ts for Apex Extension");
+console.log('Starting index.ts for Apex Extension');
 
 class Logger {
   private static timestamps: Map<string, number> = new Map();
@@ -44,7 +44,7 @@ class Logger {
   }
 }
 
-Logger.startTiming('Import Apex related libraries');
+Logger.startTiming('T00 Import Apex related libraries');
 const importStart = process.hrtime();
 
 
@@ -88,14 +88,14 @@ import { getTestOutlineProvider } from './views/testOutlineProvider';
 import { ApexTestRunner, TestRunType } from './views/testRunner';
 
 const importEnd = telemetryService.getEndHRTime(importStart);
-Logger.endTiming('Import Apex related libraries');
+Logger.endTiming('T00 Import Apex related libraries');
 telemetryService.sendEventData('importApexRelatedLibraries', undefined, {
   activationTime: importEnd
 });
 
 export const activate = async (extensionContext: vscode.ExtensionContext) => {
 
-  Logger.startTiming('Activate Function');
+  Logger.startTiming('T01 Activate Function');
   const activateStart = process.hrtime();
   const activationTracker = new ActivationTracker(
     extensionContext,
@@ -132,17 +132,21 @@ export const activate = async (extensionContext: vscode.ExtensionContext) => {
   await telemetryService.initializeService(extensionContext);
 
   // start the language server and client
-  Logger.startTiming('start the language server and client');
+  Logger.startTiming('T01.1 start the language server and client');
   await createLanguageClient(extensionContext, languageServerStatusBarItem);
-  Logger.endTiming('start the language server and client');
+  Logger.endTiming('T01.1 start the language server and client');
 
   // Javadoc support
   enableJavaDocSymbols();
 
   // Commands
+  Logger.startTiming('T01.2 Register Commands in the activate function');
   const commands = registerCommands();
   extensionContext.subscriptions.push(commands);
+  Logger.endTiming('T01.2 Register Commands in the activate function');
+  Logger.startTiming('T01.3 Register Test View in the activate function');
   extensionContext.subscriptions.push(registerTestView());
+  Logger.endTiming('T01.3 Register Test View in the activate function');
 
   const exportedApi = {
     getLineBreakpointInfo,
@@ -152,7 +156,7 @@ export const activate = async (extensionContext: vscode.ExtensionContext) => {
   };
   void activationTracker.markActivationStop(new Date());
   const activateEnd = telemetryService.getEndHRTime(activateStart);
-  Logger.endTiming('Activate Function');
+  Logger.endTiming('T01 Activate Function');
   telemetryService.sendEventData('Activate', undefined, {
     activationTime: activateEnd
   });
@@ -161,7 +165,7 @@ export const activate = async (extensionContext: vscode.ExtensionContext) => {
 
 
 const registerCommands = (): vscode.Disposable => {
-  Logger.startTiming('Register Commands');
+  Logger.startTiming('T01.2 Register Commands');
   const registerCommandsStart = process.hrtime();
   // Colorize code coverage
   const statusBarToggle = new StatusBarToggle();
@@ -250,7 +254,7 @@ const registerCommands = (): vscode.Disposable => {
       launchApexReplayDebuggerWithCurrentFile
     );
   const registerCommandsEnd = telemetryService.getEndHRTime(registerCommandsStart);
-  Logger.endTiming('Register Commands');
+  Logger.endTiming('T01.2 Register Commands');
   telemetryService.sendEventData('registerCommands', undefined, {
     activationTime: registerCommandsEnd
   });
@@ -279,7 +283,7 @@ const registerCommands = (): vscode.Disposable => {
 };
 
 const registerTestView = (): vscode.Disposable => {
-  Logger.startTiming('Register Test View');
+  Logger.startTiming('T01.3 Register Test View');
   const registerTestViewStart = process.hrtime();
   const testOutlineProvider = getTestOutlineProvider();
   // Create TestRunner
@@ -333,7 +337,7 @@ const registerTestView = (): vscode.Disposable => {
     })
   );
   const registerTestViewEnd = telemetryService.getEndHRTime(registerTestViewStart);
-  Logger.endTiming('Register Test View');
+  Logger.endTiming('T01.3 Register Test View');
   telemetryService.sendEventData('registerTestView', undefined, {
     activationTime: registerTestViewEnd
   });
@@ -357,22 +361,22 @@ const createLanguageClient = async (
   extensionContext: vscode.ExtensionContext,
   languageServerStatusBarItem: ApexLSPStatusBarItem
 ): Promise<void> => {
-  Logger.startTiming('Create Language Client');
+  Logger.startTiming('T01.1 Create Language Client');
   const createLanguageClientStart = process.hrtime();
   // Resolve any found orphan language servers
   void lsoh.resolveAnyFoundOrphanLanguageServers();
   // Initialize Apex language server
   try {
-    Logger.startTiming('ApexLSP Startup');
+    Logger.startTiming('T01.1.1 ApexLSP Startup');
     const langClientHRStart = process.hrtime();
 
-    Logger.startTiming('Create Language Server');
+    Logger.startTiming('T01.1.1.1 Create Language Server');
     const createLangServerStart = process.hrtime();
     languageClientUtils.setClientInstance(
       await languageServer.createLanguageServer(extensionContext)
     );
     const createLangServerEnd = telemetryService.getEndHRTime(createLangServerStart); // Record the end time
-    Logger.endTiming('Create Language Server');
+    Logger.endTiming('T01.1.1.1 Create Language Server');
     telemetryService.sendEventData('CreateLanguageServer', undefined, {
       activationTime: createLangServerEnd
     });
@@ -399,22 +403,22 @@ const createLanguageClient = async (
 
       // TODO: the client should not be undefined. We should refactor the code to
       // so there is no question as to whether the client is defined or not.
-      Logger.startTiming('Start Language Server');
+      Logger.startTiming('T01.1.1.2 Start Language Client');
       const startLangServerStart = process.hrtime();
       await languageClient.start();
       const startLangServerEnd = telemetryService.getEndHRTime(startLangServerStart); // Record the end time
-      Logger.endTiming('Start Language Server');
-      telemetryService.sendEventData('StartLanguageServer', undefined, {
+      Logger.endTiming('T01.1.1.2 Start Language Client');
+      telemetryService.sendEventData('StartLanguageClient', undefined, {
         activationTime: startLangServerEnd
       });
 
       // Client is running
       const startTime = telemetryService.getEndHRTime(langClientHRStart); // Record the end time
-      Logger.endTiming('ApexLSP Startup');
+      Logger.endTiming('T01.1.1 ApexLSP Startup');
       telemetryService.sendEventData('apexLSPStartup', undefined, {
         activationTime: startTime
       });
-      Logger.startTiming('First Index Done Handler');
+      Logger.startTiming('T01.1.2 First Index Done Handler');
       const IndexDoneHandlerStart = process.hrtime();
       await indexerDoneHandler(
         retrieveEnableSyncInitJobs(),
@@ -425,7 +429,7 @@ const createLanguageClient = async (
       telemetryService.sendEventData('firstIndexDoneHandler', undefined, {
         activationTime: IndexDoneHandlerEnd
       });
-      Logger.endTiming('First Index Done Handler')
+      Logger.endTiming('T01.1.2 First Index Done Handler');
       extensionContext.subscriptions.push(
         languageClientUtils.getClientInstance()!
       );
@@ -457,7 +461,7 @@ const createLanguageClient = async (
     );
   }
   const createLanguageClientEnd = telemetryService.getEndHRTime(createLanguageClientStart);
-  Logger.endTiming('Create Language Client');
+  Logger.endTiming('T01.1 Create Language Client');
   telemetryService.sendEventData('createLanguageClient', undefined, {
     activationTime: createLanguageClientEnd
   });
@@ -471,7 +475,7 @@ export const indexerDoneHandler = async (
   languageServerStatusBarItem: ApexLSPStatusBarItem
 ) => {
   const indexerDoneHandlerStart = process.hrtime();
-  Logger.startTiming('Second Index Done Handler');
+  Logger.startTiming('T02 Second Index Done Handler');
   // Listener is useful only in async mode
   if (!enableSyncInitJobs) {
     // The listener should be set after languageClient is ready
@@ -490,7 +494,7 @@ export const indexerDoneHandler = async (
       languageServerStatusBarItem
     );
   }
-  Logger.endTiming('Second Index Done Handler');
+  Logger.endTiming('T02 Second Index Done Handler');
   const indexerDoneHandlerEnd = telemetryService.getEndHRTime(indexerDoneHandlerStart); // Record the end time
   telemetryService.sendEventData('secondIndexerDoneHandler', undefined, {
     activationTime: indexerDoneHandlerEnd
