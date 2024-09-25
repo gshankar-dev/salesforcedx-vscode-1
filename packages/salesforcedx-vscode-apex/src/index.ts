@@ -165,7 +165,7 @@ export const activate = async (extensionContext: vscode.ExtensionContext) => {
 
 
 const registerCommands = (): vscode.Disposable => {
-  Logger.startTiming('T01.2 Register Commands');
+  Logger.startTiming('T01_2 Register Commands');
   //const registerCommandsStart = process.hrtime();
   // Colorize code coverage
   const statusBarToggle = new StatusBarToggle();
@@ -254,7 +254,7 @@ const registerCommands = (): vscode.Disposable => {
       launchApexReplayDebuggerWithCurrentFile
     );
   //const registerCommandsEnd = telemetryService.getEndHRTime(registerCommandsStart);
-  Logger.endTiming('T01.2 Register Commands');
+  Logger.endTiming('T01_2 Register Commands');
   /* telemetryService.sendEventData('registerCommands', undefined, {
     activationTime: registerCommandsEnd
   }); */
@@ -283,7 +283,7 @@ const registerCommands = (): vscode.Disposable => {
 };
 
 const registerTestView = (): vscode.Disposable => {
-  Logger.startTiming('T01.3 Register Test View');
+  Logger.startTiming('T01_3 Register Test View');
   //const registerTestViewStart = process.hrtime();
   const testOutlineProvider = getTestOutlineProvider();
   // Create TestRunner
@@ -337,7 +337,7 @@ const registerTestView = (): vscode.Disposable => {
     })
   );
   //const registerTestViewEnd = telemetryService.getEndHRTime(registerTestViewStart);
-  Logger.endTiming('T01.3 Register Test View');
+  Logger.endTiming('T01_3 Register Test View');
   /* telemetryService.sendEventData('registerTestView', undefined, {
     activationTime: registerTestViewEnd
   }); */
