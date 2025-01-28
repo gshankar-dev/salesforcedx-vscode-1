@@ -12,6 +12,40 @@ import { ApexLanguageClient } from './apexLanguageClient';
 import ApexLSPStatusBarItem from './apexLspStatusBarItem';
 import { CodeCoverage, StatusBarToggle } from './codecoverage';
 
+console.log('Geeta- Starting index.ts for Apex Extension');
+
+class Logger {
+  private static timestamps: Map<string, number> = new Map();
+
+  static logWithTimestamp(message: string) {
+    const now = new Date();
+    const timestamp = now.toISOString();
+    console.log(`[${timestamp}] ${message}`);
+  }
+
+  static startTiming(eventName: string) {
+    const now = new Date();
+    this.timestamps.set(eventName, now.getTime());
+    this.logWithTimestamp(`Started timing event: ${eventName}`);
+  }
+
+  static endTiming(eventName: string) {
+    const now = new Date();
+    const endTime = now.getTime();
+    const startTime = this.timestamps.get(eventName);
+
+    if (startTime) {
+      const duration = endTime - startTime;
+      this.logWithTimestamp(`Event ${eventName} took ${duration} ms`);
+      this.timestamps.delete(eventName); // Optionally clear the start time
+    } else {
+      this.logWithTimestamp(`No start time found for event: ${eventName}`);
+    }
+  }
+}
+
+Logger.startTiming('T00 Import Apex related libraries');
+
 import {
   anonApexDebug,
   anonApexExecute,
@@ -47,7 +81,11 @@ import { getTelemetryService } from './telemetry/telemetry';
 import { getTestOutlineProvider, TestNode } from './views/testOutlineProvider';
 import { ApexTestRunner, TestRunType } from './views/testRunner';
 
+Logger.endTiming('T00 Import Apex related libraries');
+
 export const activate = async (extensionContext: vscode.ExtensionContext) => {
+  Logger.startTiming('T01 Activate Function');
+  Logger.startTiming('T01_0 initialization steps in activate function');
   const telemetryService = await getTelemetryService();
   if (!telemetryService) {
     throw new Error('Could not fetch a telemetry service instance');
@@ -75,19 +113,23 @@ export const activate = async (extensionContext: vscode.ExtensionContext) => {
 
   // Workspace Context
   await workspaceContext.initialize(extensionContext);
-
+  Logger.endTiming('T01_0 initialization steps in activate function');
+  Logger.startTiming('T01_1 start the language server and client');
   // start the language server and client
   await createLanguageClient(extensionContext, languageServerStatusBarItem);
-
+  Logger.endTiming('T01_1 start the language server and client');
   // Javadoc support
+  Logger.startTiming('T01_2 enable Javadoc support');
   enableJavaDocSymbols();
-
+  Logger.endTiming('T01_2 enable Javadoc support');
   // Commands
+  Logger.startTiming('T01_3 Register Commands in the activate function');
   const commands = registerCommands();
   extensionContext.subscriptions.push(commands);
-
+  Logger.endTiming('T01_3 Register Commands in the activate function');
+  Logger.startTiming('T01_4 Register Test View in the activate function');
   extensionContext.subscriptions.push(registerTestView());
-
+  Logger.endTiming('T01_4 Register Test View in the activate function');
   const exportedApi = {
     getLineBreakpointInfo,
     getExceptionBreakpointInfo,
@@ -96,12 +138,13 @@ export const activate = async (extensionContext: vscode.ExtensionContext) => {
   };
 
   void activationTracker.markActivationStop(new Date());
-
+  Logger.startTiming('T01_5 setImmediate resolveAnyFoundOrphanLanguageServers');
   setImmediate(() => {
     // Resolve any found orphan language servers in the background
     void lsoh.resolveAnyFoundOrphanLanguageServers();
   });
-
+  Logger.endTiming('T01_5 setImmediate resolveAnyFoundOrphanLanguageServers');
+  Logger.endTiming('T01 Activate Function');
   return exportedApi;
 };
 
@@ -249,14 +292,19 @@ const createLanguageClient = async (
   extensionContext: vscode.ExtensionContext,
   languageServerStatusBarItem: ApexLSPStatusBarItem
 ): Promise<void> => {
+  Logger.startTiming('T01_1 createLanguageClient function');
   const telemetryService = await getTelemetryService();
   // Initialize Apex language server
   try {
+    Logger.startTiming('T01_1_1 ApexLSP Startup');
     const langClientHRStart = process.hrtime();
+    Logger.startTiming('T01_1_1_0 await languageServer.createLanguageServer');
     languageClientUtils.setClientInstance(await languageServer.createLanguageServer(extensionContext));
-
+    Logger.endTiming('T01_1_1_0 await languageServer.createLanguageServer');
+    Logger.startTiming('T01_1_1_1 languageClientUtils.getClientInstance()');
     const languageClient = languageClientUtils.getClientInstance();
-
+    Logger.endTiming('T01_1_1_1 languageClientUtils.getClientInstance()');
+    Logger.startTiming('T01_1_1_2 languageClient.errorHandler?.addListener');
     if (languageClient) {
       languageClient.errorHandler?.addListener('error', (message: string) => {
         languageServerStatusBarItem.error(message);
@@ -269,17 +317,24 @@ const createLanguageClient = async (
       languageClient.errorHandler?.addListener('startFailed', () => {
         languageServerStatusBarItem.error(nls.localize('apex_language_server_failed_activate'));
       });
-
+      Logger.endTiming('T01_1_1_2 languageClient.errorHandler?.addListener');
       // TODO: the client should not be undefined. We should refactor the code to
       // so there is no question as to whether the client is defined or not.
+      Logger.startTiming('T01_1_1_3 languageClient.start()');
       await languageClient.start();
+      Logger.endTiming('T01_1_1_3 languageClient.start()');
       // Client is running
       const startTime = telemetryService.getEndHRTime(langClientHRStart); // Record the end time
       telemetryService.sendEventData('apexLSPStartup', undefined, {
         activationTime: startTime
       });
+      Logger.endTiming('T01_1_1 ApexLSP Startup');
+      Logger.startTiming('T01_1_2 First Index Done Handler');
       await indexerDoneHandler(retrieveEnableSyncInitJobs(), languageClient, languageServerStatusBarItem);
+      Logger.endTiming('T01_1_2 First Index Done Handler');
+      Logger.startTiming('T01_1_3 languageClientUtils.getClientInstance()');
       extensionContext.subscriptions.push(languageClientUtils.getClientInstance()!);
+      Logger.endTiming('T01_1_3 languageClientUtils.getClientInstance()');
     } else {
       languageClientUtils.setStatus(
         ClientStatus.Error,
@@ -310,6 +365,7 @@ export const indexerDoneHandler = async (
   languageClient: ApexLanguageClient,
   languageServerStatusBarItem: ApexLSPStatusBarItem
 ) => {
+  Logger.startTiming('T01_1_2_0 Second Index Done Handler');
   // Listener is useful only in async mode
   if (!enableSyncInitJobs) {
     // The listener should be set after languageClient is ready
@@ -322,4 +378,5 @@ export const indexerDoneHandler = async (
     // indexer must be running at the point
     await extensionUtils.setClientReady(languageClient, languageServerStatusBarItem);
   }
+  Logger.endTiming('T01_1_2_0 Second Index Done Handler');
 };
