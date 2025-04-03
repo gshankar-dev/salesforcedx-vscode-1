@@ -5,7 +5,6 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-// tslint:disable:no-unused-expression
 import { SfCommandlet } from '@salesforce/salesforcedx-utils-vscode';
 import { expect } from 'chai';
 import * as events from 'events';
@@ -196,20 +195,14 @@ describe('TestView', () => {
 
     beforeEach(() => {
       readFolderStub = sb.stub(fs, 'readdirSync');
-      readFolderStub.callsFake(folderName => {
-        return ['test-result.json'];
-      });
+      readFolderStub.callsFake(folderName => ['test-result.json']);
       readFileStub = sb.stub(fs, 'readFileSync');
-      readFileStub.callsFake(fileName => {
-        return 'nonsense';
-      });
+      readFileStub.callsFake(fileName => 'nonsense');
       parseJSONStub = sb.stub(JSON, 'parse');
     });
 
     it('Should update single test with Pass result using Apex library', () => {
-      parseJSONStub.callsFake(() => {
-        return apexLibOneFileResult;
-      });
+      parseJSONStub.callsFake(() => apexLibOneFileResult);
 
       testOutline = new ApexTestOutlineProvider(apexTestInfo.slice(0, 1));
       testOutline.updateTestResults('oneFilePass');
@@ -220,9 +213,7 @@ describe('TestView', () => {
     });
 
     it('Should update tests and test groups with passing/failing tests using Apex library', () => {
-      parseJSONStub.callsFake(() => {
-        return apexLibMultipleResult;
-      });
+      parseJSONStub.callsFake(() => apexLibMultipleResult);
       testOutline = new ApexTestOutlineProvider(apexLibTestInfo);
       testOutline.updateTestResults('multipleFilesMixed');
 

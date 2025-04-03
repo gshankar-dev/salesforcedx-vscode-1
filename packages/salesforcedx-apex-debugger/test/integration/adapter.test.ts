@@ -82,8 +82,7 @@ describe.skip('Interactive debugger adapter - integration', () => {
     try {
       await dc.attachRequest({});
       expect.fail('Debugger client should have thrown an error');
-      // tslint:disable-next-line:no-empty
-    } catch (error) {}
+    } catch {}
   });
 
   it('End-to-end flow', async () => {
@@ -174,8 +173,8 @@ describe.skip('Interactive debugger adapter - integration', () => {
   });
 });
 
-const execApexNoWait = (apexExecFilePath: string, userName: string): CommandExecution => {
-  return new CliCommandExecutor(
+const execApexNoWait = (apexExecFilePath: string, userName: string): CommandExecution =>
+  new CliCommandExecutor(
     new SfCommandBuilder()
       .withArg('apex:run')
       .withFlag('--file', apexExecFilePath)
@@ -184,4 +183,3 @@ const execApexNoWait = (apexExecFilePath: string, userName: string): CommandExec
       .build(),
     { cwd: process.cwd() }
   ).execute();
-};

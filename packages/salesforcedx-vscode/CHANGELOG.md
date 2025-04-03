@@ -1,3 +1,111 @@
+# 63.7.0 - April 2, 2025
+
+## Added
+
+#### salesforcedx-vscode-core
+#### salesforcedx-vscode-apex
+
+- We updated the Org Browser to include more lightning component types. ([PR #6174](https://github.com/forcedotcom/salesforcedx-vscode/pull/6174))
+- Use the new `SFDX: Restart Apex Language Server` command to restart the Apex Language Server. ([PR #6177](https://github.com/forcedotcom/salesforcedx-vscode/pull/6177))
+- Code coverage colors now match your VS Code theme, so you can create a personalized coding experience. In the past, these colors were static. ([PR #6155](https://github.com/forcedotcom/salesforcedx-vscode/pull/6155))
+
+
+
+## Fixed
+
+#### salesforcedx-vscode-core
+
+- We made some changes under the hood. ([PR #6163](https://github.com/forcedotcom/salesforcedx-vscode/pull/6163))
+
+# 63.6.0 - March 26, 2025
+
+## Added
+
+#### salesforcedx-vscode
+#### salesforcedx-vscode-expanded
+
+ 🚀  **Agentforce for Developers Elevated to Salesforce Extension Pack**
+
+With its elevated presence in the Salesforce Extension Pack, Agentforce for Developers is now a core part of the Salesforce developer experience. This change improves discoverability, making it easier for developers to find and install Agentforce for Developers as part of their workflow. ([PR #6097](https://github.com/forcedotcom/salesforcedx-vscode/pull/6097))
+
+
+## Fixed
+
+#### salesforcedx-vscode-core
+
+- We updated the org browser icon. ([PR #6152](https://github.com/forcedotcom/salesforcedx-vscode/pull/6152))
+
+# 63.5.0 - March 19, 2025
+
+## Fixed
+
+#### salesforcedx-vscode-apex
+
+- We made some changes under the hood. ([PR #6146](https://github.com/forcedotcom/salesforcedx-vscode/pull/6146), [PR #6148](https://github.com/forcedotcom/salesforcedx-vscode/pull/6148), [PR #6150](https://github.com/forcedotcom/salesforcedx-vscode/pull/6150))
+
+# 63.4.1 - March 14, 2025
+
+## Fixed
+
+#### salesforcedx-vscode-apex
+
+- We fixed an issue that caused missing descriptions to be handled incorrectly when creating an OpenAPI document. ([PR #6125](https://github.com/forcedotcom/salesforcedx-vscode/pull/6125))
+
+- We improved the OpenAPI document generation so that the generated fields appear in a specific order. ([PR #6129](https://github.com/forcedotcom/salesforcedx-vscode/pull/6129))
+
+- We made some changes under the hood. ([PR #6140](https://github.com/forcedotcom/salesforcedx-vscode/pull/6140))
+
+#### salesforcedx-vscode-core
+
+- We added some labels in the Org Browser. ([PR #6139](https://github.com/forcedotcom/salesforcedx-vscode/pull/6139))
+
+- We made some changes under the hood. ([PR #6124](https://github.com/forcedotcom/salesforcedx-vscode/pull/6124), [PR #6128](https://github.com/forcedotcom/salesforcedx-vscode/pull/6128))
+
+#### salesforcedx-vscode-lightning
+#### salesforcedx-vscode-lwc
+
+- We made some changes under the hood. ([PR #6141](https://github.com/forcedotcom/salesforcedx-vscode/pull/6141))
+
+# 63.2.3 - February 28, 2025
+
+## Added
+
+#### salesforcedx-vscode-apex
+
+- 🚀 Create Custom Agent Actions from Your Apex REST Classes using the new `SFDX: Create OpenAPI Document from this Class (Beta)` command. The command generates an OpenAPI document for your Apex REST class using Salesforce's secure, custom generative AI model.  Easily deploy the generated document to your org's API Catalog. Then, use it to create an agent action using Agent Studio. ([PR #6102](https://github.com/forcedotcom/salesforcedx-vscode/pull/6102))
+
+## Fixed
+
+#### salesforcedx-vscode-apex
+
+- We corrected the URL for the "Set your Java version" link. ([PR #6106](https://github.com/forcedotcom/salesforcedx-vscode/pull/6106))
+
+# 63.1.1 - February 19, 2025
+
+## Added
+
+#### salesforcedx-vscode-core
+
+- We updated our dependencies to support the latest metadata types. As a result, you can now deploy all the latest metadata types using the VSCode extensions. ([PR #6083](https://github.com/forcedotcom/salesforcedx-vscode/pull/6083))
+
+# 63.0.0 - February 13, 2025
+
+## Added
+
+#### salesforcedx-vscode-apex
+
+- We've made some updates to the Apex LSP to prepare for an upcoming Salesforce release bump.([PR #6062](https://github.com/forcedotcom/salesforcedx-vscode/pull/6062))
+
+## Fixed
+
+#### salesforcedx-utils-vscode
+
+- We fixed an under-the-hood issue with our telemetry. ([PR #6006](https://github.com/forcedotcom/salesforcedx-vscode/pull/6006))
+
+#### salesforcedx-vscode
+
+- Our VS Code Marketplace page now shows the minimum VS Code version that’s required by the Salesforce Extension Pack.([PR #6044](https://github.com/forcedotcom/salesforcedx-vscode/pull/6044))
+
 # 62.14.1 - January 15, 2025
 
 ## Fixed

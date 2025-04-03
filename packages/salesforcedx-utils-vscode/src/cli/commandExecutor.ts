@@ -13,7 +13,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
 
-// Below two dependancies are not structured correcly for import unless require is used.
+// Below two dependencies are not structured correctly for import unless require is used.
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { Command } from './';
 const cross_spawn = require('cross-spawn');
@@ -87,7 +87,7 @@ export class CompositeCliCommandExecutor {
  * Represents a command execution (a process has already been spawned for it).
  * This is tightly coupled with the execution model (child_process).
  * If we ever use a different executor, this class should be refactored and abstracted
- * to take an event emitter/observable instead of child_proces.
+ * to take an event emitter/observable instead of child_process.
  */
 export type CommandExecution = {
   readonly command: Command;
@@ -226,8 +226,8 @@ export class CliCommandExecution implements CommandExecution {
  * Basically if a child process spawns it own children  processes, those
  * children (grandchildren) processes are not necessarily killed
  */
-const killPromise = (processId: number, signal: string): Promise<void> => {
-  return new Promise<void>((resolve, reject) => {
+const killPromise = (processId: number, signal: string): Promise<void> =>
+  new Promise<void>((resolve, reject) => {
     kill(processId, signal, (err: {}) => {
       if (err) {
         reject(err);
@@ -235,4 +235,3 @@ const killPromise = (processId: number, signal: string): Promise<void> => {
       resolve();
     });
   });
-};

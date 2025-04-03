@@ -11,7 +11,7 @@ import { CompletionItemKind, CompletionList, TextDocument } from 'vscode-languag
 import * as htmlLanguageService from '../../src/htmlLanguageService';
 import { applyEdits } from './textEditSupport';
 
-export type ItemDescription = {
+type ItemDescription = {
   label: string;
   documentation?: string;
   kind?: CompletionItemKind;
@@ -26,9 +26,7 @@ describe('HTML Completion', () => {
     document: TextDocument,
     offset: number
   ) => {
-    const matches = completions.items.filter(completion => {
-      return completion.label === expected.label;
-    });
+    const matches = completions.items.filter(completion => completion.label === expected.label);
     if (expected.notAvailable) {
       assert.equal(matches.length, 0, expected.label + ' should not existing is results');
       return;
@@ -90,7 +88,6 @@ describe('HTML Completion', () => {
   };
 
   const run = (tests: PromiseLike<void>[], testDone) => {
-    // tslint:disable-next-line:no-floating-promises
     Promise.all(tests).then(
       () => {
         testDone();
@@ -577,7 +574,6 @@ describe('HTML Completion', () => {
       });
 
       seenNamespaces.forEach((value, name) => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         expect(value, `namespace ${name} was not seen`).to.be.true;
       });
     });

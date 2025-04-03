@@ -10,7 +10,7 @@ on:
       automationRepo:
         description: 'Set the repo to use for automation tests'
         required: false
-        default: 'salesforcedx-vscode-automation-tests'
+        default: 'salesforcedx-vscode-automation-tests-redhat'
         type: string
       testToRun:
         description: 'Run this E2E test'
@@ -38,7 +38,7 @@ jobs:
       matrix:
         os: ${{ fromJson(inputs.os) }}
         nodeVersion:
-          - 20.9.0
+          - 20.17.0
         vscodeVersion:
           - ${{ inputs.vscodeVersion }}
     steps:
@@ -128,10 +128,15 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: failure() && inputs.automationRepo == 'salesforcedx-vscode-automation-tests'
         with:
-          name: screenshots-${{ inputs.testToRun }}-${{ matrix.os }}
+          name: screenshots-${{ inputs.testToRun }}-${{ matrix.os }}-${{ inputs.vscodeVersion }}
           path: ./${{ inputs.automationRepo }}/screenshots
       - uses: actions/upload-artifact@v4
         if: failure() && inputs.automationRepo == 'salesforcedx-vscode-automation-tests-redhat'
         with:
-          name: screenshots-${{ inputs.testToRun }}-${{ matrix.os }}
+          name: screenshots-${{ inputs.testToRun }}-${{ matrix.os }}-${{ inputs.vscodeVersion }}
           path: ./salesforcedx-vscode/extensions/screenshots
+      - uses: actions/upload-artifact@v4
+        if: ${{ inputs.testToRun }} == 'createOASDoc'
+        with:
+          name: llm-logs-${{ matrix.os }}-${{ inputs.vscodeVersion }}
+          path: ./${{ inputs.automationRepo }}/e2e-temp/TempProject-CreateOASDoc/llm-logs

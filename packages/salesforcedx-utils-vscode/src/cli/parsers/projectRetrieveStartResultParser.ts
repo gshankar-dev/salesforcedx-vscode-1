@@ -5,9 +5,9 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { extractJsonObject } from '../../helpers';
+import { extractJson } from '../../helpers';
 
-export const CONFLICT_ERROR_NAME = 'SourceConflictError';
+const CONFLICT_ERROR_NAME = 'SourceConflictError';
 
 export type ProjectRetrieveStartResult = {
   columnNumber?: string;
@@ -39,8 +39,8 @@ export class ProjectRetrieveStartResultParser {
 
   constructor(stdout: string) {
     try {
-      this.response = extractJsonObject(stdout);
-    } catch (e) {
+      this.response = extractJson(stdout);
+    } catch {
       const err = new Error('Error parsing pull result');
       err.name = 'ProjectRetrieveStartParserFail';
       throw err;

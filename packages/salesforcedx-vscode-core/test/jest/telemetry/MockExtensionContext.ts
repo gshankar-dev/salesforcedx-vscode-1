@@ -35,7 +35,7 @@ class MockMemento implements Memento {
     return readOnlyKeys;
   }
 
-  public get<T>(key: string): T {
+  public get<T>(key: string): T | undefined {
     const index = this.getIndex(key);
     return index !== -1 ? this.values[index] : undefined;
   }
@@ -99,15 +99,9 @@ export class MockExtensionContext implements ExtensionContext {
     this.workspaceState = new MockMemento();
     this.secrets = {
       onDidChange: {} as any,
-      get: (key: string): Thenable<string | undefined> => {
-        return Promise.resolve(undefined);
-      },
-      store: (key: string, value: string): Thenable<void> => {
-        return Promise.resolve();
-      },
-      delete: (key: string): Thenable<void> => {
-        return Promise.resolve();
-      }
+      get: (key: string): Thenable<string | undefined> => Promise.resolve(undefined),
+      store: (key: string, value: string): Thenable<void> => Promise.resolve(),
+      delete: (key: string): Thenable<void> => Promise.resolve()
     };
     this.extension = {
       packageJSON: {
@@ -136,10 +130,9 @@ export class MockExtensionContext implements ExtensionContext {
   public storagePath: string = 'myStoragePath';
   public languageModelAccessInformation: LanguageModelAccessInformation = {
     onDidChange: new EventEmitter<void>().event,
-    canSendRequest: (chat: LanguageModelChat) => {
+    canSendRequest: (chat: LanguageModelChat) =>
       // Implement your logic here
       // For example, return true, false, or undefined based on some condition
-      return true; // or false or undefined
-    }
+      true // or false or undefined
   };
 }

@@ -12,10 +12,11 @@ export {
   getLineBreakpointInfo,
   getApexTests,
   getExceptionBreakpointInfo,
+  indexerDoneHandler,
   LanguageClientStatus
 } from './languageClientUtils';
 
-export { enableJavaDocSymbols } from './javaDocSymbols';
+export { configureApexLanguage } from './apexLanguageConfiguration';
 
 export { languageServerUtils, ProcessDetail } from './languageServerUtils';
 

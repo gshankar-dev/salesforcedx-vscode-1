@@ -71,13 +71,20 @@ export default [
           '',
           {
             pattern: ' \\* Copyright \\(c\\) \\d{4}, salesforce\\.com, inc\\.',
-            template: ' * Copyright (c) 2024, salesforce.com, inc.'
+            template: ' * Copyright (c) 2025, salesforce.com, inc.'
           },
           ' * All rights reserved.',
           ' * Licensed under the BSD 3-Clause license.',
           ' * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause',
           ' '
         ]
+      ],
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        {
+          args: 'none',
+          ignoreRestSiblings: true
+        }
       ],
       '@typescript-eslint/adjacent-overload-signatures': 'error',
       '@typescript-eslint/array-type': ['error', { default: 'array' }],
@@ -147,7 +154,6 @@ export default [
           hoist: 'all'
         }
       ],
-      '@typescript-eslint/no-unused-expressions': 'warn',
       '@typescript-eslint/no-use-before-define': 'off',
       '@typescript-eslint/no-var-requires': 'error',
       '@typescript-eslint/prefer-function-type': 'error',
@@ -180,6 +186,7 @@ export default [
           allowNullish: true
         }
       ],
+      'arrow-body-style': ['error', 'as-needed'],
       'arrow-parens': ['error', 'as-needed'],
       'comma-dangle': 'error',
       complexity: 'off',
@@ -304,13 +311,21 @@ export default [
       '@typescript-eslint/no-unsafe-argument': 'off',
       '@typescript-eslint/no-unsafe-member-access': 'off',
       '@typescript-eslint/no-unsafe-call': 'off',
-      '@typescript-eslint/no-unused-vars': 'warn',
       '@typescript-eslint/no-unsafe-assignment': 'warn',
       '@typescript-eslint/no-unused-expressions': 'warn',
       '@typescript-eslint/no-unsafe-return': 'warn',
       '@typescript-eslint/restrict-template-expressions': 'warn',
       '@typescript-eslint/unbound-method': 'off',
-      'jest/unbound-method': 'error'
+      'jest/unbound-method': 'error',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          varsIgnorePattern: '.*Mock$|.*Stub$|.*Spy$',
+          args: 'none',
+          argsIgnorePattern: '.*',
+          ignoreRestSiblings: true
+        }
+      ]
     }
   },
   {
