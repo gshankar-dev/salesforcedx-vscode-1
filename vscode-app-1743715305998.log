@@ -1,0 +1,804 @@
+workbench.desktop.main.js:655  WARN IWorkbenchContributionsRegistry#getContribution('workbench.contrib.perfview'): contribution instantiated before LifecyclePhase.Restored!
+workbench.desktop.main.js:655  INFO Started local extension host with pid 11020.
+workbench.desktop.main.js:655  WARN [salesforcedx-einstein-gpt]: Couldn't find message for key salesforcedx-einstein-gpt.optimizeLwc.
+workbench.desktop.main.js:655  INFO [perf] Render performance baseline is 482ms
+workbench.desktop.main.js:655   ERR [Extension Host] Cannot find en-us, defaulting to en
+workbench.desktop.main.js:138 [Extension Host] Cannot find en-us, defaulting to en
+C @ workbench.desktop.main.js:138
+workbench.desktop.main.js:655  INFO Extension host (LocalProcess pid: 11020) is unresponsive.
+workbench.desktop.main.js:1673 Extension Host
+workbench.desktop.main.js:1673 Debugger attached.
+workbench.desktop.main.js:655  INFO UNRESPONSIVE extension host: starting to profile NOW
+workbench.desktop.main.js:655   ERR [Extension Host] Cannot find en-us, defaulting to en
+workbench.desktop.main.js:138 [Extension Host] Cannot find en-us, defaulting to en
+C @ workbench.desktop.main.js:138
+workbench.desktop.main.js:655   ERR [Extension Host] Cannot find en-us, defaulting to en
+workbench.desktop.main.js:138 [Extension Host] Cannot find en-us, defaulting to en
+C @ workbench.desktop.main.js:138
+workbench.desktop.main.js:655  INFO Extension host (LocalProcess pid: 11020) is responsive.
+workbench.desktop.main.js:655  INFO UNRESPONSIVE extension host: received responsive event and cancelling profiling session
+workerMain.js:3 The factory function of "vs/base/browser/window" has thrown an exception
+v @ workerMain.js:3
+workerMain.js:3 ReferenceError: window is not defined
+    at eval (profileAnalysisWorker.js:3:1798)
+    at t._safeInvokeFunction (workerMain.js:5:1248)
+    at t._invokeFactory (workerMain.js:5:1428)
+    at t.complete (workerMain.js:5:1685)
+    at v._onModuleComplete (workerMain.js:6:1051)
+    at v._resolve (workerMain.js:6:510)
+    at v.defineModule (workerMain.js:5:5564)
+    at n (workerMain.js:6:1745)
+    at eval (profileAnalysisWorker.js:3:1550)
+    at anonymous (profileAnalysisWorker.js:8:4534)
+v @ workerMain.js:3
+workerMain.js:3 Here are the modules that depend on it:
+v @ workerMain.js:3
+workerMain.js:3 Array(0)
+v @ workerMain.js:3
+workbench.desktop.main.js:138 [Extension Host] O11yReporter not initialized yet, skipping addition.
+workbench.desktop.main.js:138 [Extension Host] adding AppInsights reporter.
+workbench.desktop.main.js:138 [Extension Host] An error was encountered while getting the org connection:
+ Error: No default org is set. Run "SFDX: Create a Default Scratch Org" or "SFDX: Authorize an Org" to set one.
+C @ workbench.desktop.main.js:138
+workbench.desktop.main.js:138 [Extension Host] SF CLI Extension Activated
+workbench.desktop.main.js:655   ERR [Extension Host] Cannot find en-us, defaulting to en
+workbench.desktop.main.js:138 [Extension Host] Cannot find en-us, defaulting to en
+C @ workbench.desktop.main.js:138
+workbench.desktop.main.js:655   ERR [Extension Host] Cannot find en-us, defaulting to en
+workbench.desktop.main.js:138 [Extension Host] Cannot find en-us, defaulting to en
+C @ workbench.desktop.main.js:138
+workbench.desktop.main.js:655  INFO Extension host (LocalProcess pid: 11020) is unresponsive.
+workbench.desktop.main.js:1673 Extension Host
+workbench.desktop.main.js:1673 Debugger attached.
+workbench.desktop.main.js:655  INFO UNRESPONSIVE extension host: starting to profile NOW
+workbench.desktop.main.js:655  INFO Not activating extension 'salesforce.salesforcedx-vscode-lwc': Timed out while searching for 'workspaceContains' pattern **/workspace-user.xml
+workbench.desktop.main.js:655   ERR [Extension Host] Cannot find en-us, defaulting to en
+workbench.desktop.main.js:138 [Extension Host] Cannot find en-us, defaulting to en
+C @ workbench.desktop.main.js:138
+workbench.desktop.main.js:655   ERR [Extension Host] Cannot find en-us, defaulting to en
+workbench.desktop.main.js:138 [Extension Host] Cannot find en-us, defaulting to en
+C @ workbench.desktop.main.js:138
+workbench.desktop.main.js:655   ERR [Extension Host] Cannot find en-us, defaulting to en
+workbench.desktop.main.js:138 [Extension Host] Cannot find en-us, defaulting to en
+C @ workbench.desktop.main.js:138
+workbench.desktop.main.js:655   ERR [Extension Host] Cannot find en-us, defaulting to en
+workbench.desktop.main.js:138 [Extension Host] Cannot find en-us, defaulting to en
+C @ workbench.desktop.main.js:138
+workbench.desktop.main.js:655   ERR [Extension Host] Cannot find en-us, defaulting to en
+workbench.desktop.main.js:138 [Extension Host] Cannot find en-us, defaulting to en
+C @ workbench.desktop.main.js:138
+workerMain.js:3 The factory function of "vs/base/browser/window" has thrown an exception
+v @ workerMain.js:3
+workerMain.js:3 ReferenceError: window is not defined
+    at eval (profileAnalysisWorker.js:3:1798)
+    at t._safeInvokeFunction (workerMain.js:5:1248)
+    at t._invokeFactory (workerMain.js:5:1428)
+    at t.complete (workerMain.js:5:1685)
+    at v._onModuleComplete (workerMain.js:6:1051)
+    at v._resolve (workerMain.js:6:510)
+    at v.defineModule (workerMain.js:5:5564)
+    at n (workerMain.js:6:1745)
+    at eval (profileAnalysisWorker.js:3:1550)
+    at anonymous (profileAnalysisWorker.js:8:4534)
+v @ workerMain.js:3
+workerMain.js:3 Here are the modules that depend on it:
+v @ workerMain.js:3
+workerMain.js:3 Array(0)
+v @ workerMain.js:3
+workbench.desktop.main.js:655   ERR [Extension Host] Cannot find en-us, defaulting to en
+workbench.desktop.main.js:138 [Extension Host] Cannot find en-us, defaulting to en
+C @ workbench.desktop.main.js:138
+workbench.desktop.main.js:655   ERR [Extension Host] Cannot find en-us, defaulting to en
+workbench.desktop.main.js:138 [Extension Host] Cannot find en-us, defaulting to en
+C @ workbench.desktop.main.js:138
+workbench.desktop.main.js:655  INFO Extension host (LocalProcess pid: 11020) is responsive.
+workbench.desktop.main.js:138 [Extension Host] Activation Mode: autodetect
+workbench.desktop.main.js:138 [Extension Host] Aura Components Extension Activated
+workbench.desktop.main.js:138 [Extension Host] WorkspaceType detected: 4
+workbench.desktop.main.js:138 [Extension Host] Activation Mode: autodetect
+workbench.desktop.main.js:138 [Extension Host] key: salesforcedx-vscode-apex
+workbench.desktop.main.js:138 [Extension Host] O11yReporter not initialized yet, skipping addition.
+workbench.desktop.main.js:138 [Extension Host] adding AppInsights reporter.
+workbench.desktop.main.js:138 [Extension Host] O11yReporter not initialized yet, skipping addition.
+workbench.desktop.main.js:138 [Extension Host] adding AppInsights reporter.
+workbench.desktop.main.js:138 [Extension Host] O11yReporter not initialized yet, skipping addition.
+workbench.desktop.main.js:138 [Extension Host] adding AppInsights reporter.
+workbench.desktop.main.js:138 [Extension Host] O11yReporter not initialized yet, skipping addition.
+workbench.desktop.main.js:138 [Extension Host] adding AppInsights reporter.
+workbench.desktop.main.js:138 [Extension Host] Lightning Web Components Extension Activated
+workbench.desktop.main.js:138 [Extension Host] WorkspaceType detected: 4
+workbench.desktop.main.js:138 [Extension Host] SOQL Extension Activated
+workbench.desktop.main.js:138 [Violation] 'setInterval' handler took 64ms
+workbench.desktop.main.js:138 [Violation] 'setInterval' handler took 64ms
+[Violation] 'setTimeout' handler took 52ms
+[Violation] 'setTimeout' handler took 53ms
+workbench.desktop.main.js:655  INFO Extension host (LocalProcess pid: 11020) is unresponsive.
+[Violation] 'setTimeout' handler took 78ms
+workbench.desktop.main.js:1673 Extension Host
+workbench.desktop.main.js:1673 Debugger attached.
+workbench.desktop.main.js:655  INFO UNRESPONSIVE extension host: starting to profile NOW
+workbench.desktop.main.js:655  INFO Extension host (LocalProcess pid: 11020) is responsive.
+workbench.desktop.main.js:655  INFO UNRESPONSIVE extension host: received responsive event and cancelling profiling session
+workerMain.js:3 The factory function of "vs/base/browser/window" has thrown an exception
+v @ workerMain.js:3
+onError @ workerMain.js:3
+complete @ workerMain.js:5
+_onModuleComplete @ workerMain.js:6
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+n @ workerMain.js:6
+eval @ profileAnalysisWorker.js:3
+anonymous @ profileAnalysisWorker.js:8
+(anonymous) @ workerMain.js:4
+Promise.then (async)
+load @ workerMain.js:3
+load @ workerMain.js:3
+L @ workerMain.js:5
+_loadModule @ workerMain.js:5
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+g @ workerMain.js:6
+(anonymous) @ workerMain.js:46
+g @ workerMain.js:46
+d @ workerMain.js:46
+handleMessage @ workerMain.js:46
+k @ workerMain.js:46
+h @ workerMain.js:46
+handleMessage @ workerMain.js:46
+onmessage @ workerMain.js:46
+(anonymous) @ workerMain.js:8
+setTimeout (async)
+(anonymous) @ workerMain.js:8
+_safeInvokeFunction @ workerMain.js:5
+_invokeFactory @ workerMain.js:5
+complete @ workerMain.js:5
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+f @ workerMain.js:5
+o @ workerMain.js:6
+_safeInvokeFunction @ workerMain.js:5
+_invokeFactory @ workerMain.js:5
+complete @ workerMain.js:5
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+n @ workerMain.js:6
+anonymous @ editorSimpleWorker.nls.js:3
+(anonymous) @ workerMain.js:4
+Promise.then (async)
+load @ workerMain.js:3
+load @ workerMain.js:3
+L @ workerMain.js:5
+_loadModule @ workerMain.js:5
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+_relativeRequire @ workerMain.js:5
+l @ workerMain.js:5
+m @ workerMain.js:6
+_loadPluginDependency @ workerMain.js:5
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+n @ workerMain.js:6
+ne @ workerMain.js:6
+(anonymous) @ workerMain.js:46
+(anonymous) @ workerMain.js:46
+workerMain.js:3 ReferenceError: window is not defined
+    at eval (profileAnalysisWorker.js:3:1798)
+    at t._safeInvokeFunction (workerMain.js:5:1248)
+    at t._invokeFactory (workerMain.js:5:1428)
+    at t.complete (workerMain.js:5:1685)
+    at v._onModuleComplete (workerMain.js:6:1051)
+    at v._resolve (workerMain.js:6:510)
+    at v.defineModule (workerMain.js:5:5564)
+    at n (workerMain.js:6:1745)
+    at eval (profileAnalysisWorker.js:3:1550)
+    at anonymous (profileAnalysisWorker.js:8:4534)
+v @ workerMain.js:3
+onError @ workerMain.js:3
+complete @ workerMain.js:5
+_onModuleComplete @ workerMain.js:6
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+n @ workerMain.js:6
+eval @ profileAnalysisWorker.js:3
+anonymous @ profileAnalysisWorker.js:8
+(anonymous) @ workerMain.js:4
+Promise.then (async)
+load @ workerMain.js:3
+load @ workerMain.js:3
+L @ workerMain.js:5
+_loadModule @ workerMain.js:5
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+g @ workerMain.js:6
+(anonymous) @ workerMain.js:46
+g @ workerMain.js:46
+d @ workerMain.js:46
+handleMessage @ workerMain.js:46
+k @ workerMain.js:46
+h @ workerMain.js:46
+handleMessage @ workerMain.js:46
+onmessage @ workerMain.js:46
+(anonymous) @ workerMain.js:8
+setTimeout (async)
+(anonymous) @ workerMain.js:8
+_safeInvokeFunction @ workerMain.js:5
+_invokeFactory @ workerMain.js:5
+complete @ workerMain.js:5
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+f @ workerMain.js:5
+o @ workerMain.js:6
+_safeInvokeFunction @ workerMain.js:5
+_invokeFactory @ workerMain.js:5
+complete @ workerMain.js:5
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+n @ workerMain.js:6
+anonymous @ editorSimpleWorker.nls.js:3
+(anonymous) @ workerMain.js:4
+Promise.then (async)
+load @ workerMain.js:3
+load @ workerMain.js:3
+L @ workerMain.js:5
+_loadModule @ workerMain.js:5
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+_relativeRequire @ workerMain.js:5
+l @ workerMain.js:5
+m @ workerMain.js:6
+_loadPluginDependency @ workerMain.js:5
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+n @ workerMain.js:6
+ne @ workerMain.js:6
+(anonymous) @ workerMain.js:46
+(anonymous) @ workerMain.js:46
+workerMain.js:3 Here are the modules that depend on it:
+v @ workerMain.js:3
+onError @ workerMain.js:3
+complete @ workerMain.js:5
+_onModuleComplete @ workerMain.js:6
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+n @ workerMain.js:6
+eval @ profileAnalysisWorker.js:3
+anonymous @ profileAnalysisWorker.js:8
+(anonymous) @ workerMain.js:4
+Promise.then (async)
+load @ workerMain.js:3
+load @ workerMain.js:3
+L @ workerMain.js:5
+_loadModule @ workerMain.js:5
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+g @ workerMain.js:6
+(anonymous) @ workerMain.js:46
+g @ workerMain.js:46
+d @ workerMain.js:46
+handleMessage @ workerMain.js:46
+k @ workerMain.js:46
+h @ workerMain.js:46
+handleMessage @ workerMain.js:46
+onmessage @ workerMain.js:46
+(anonymous) @ workerMain.js:8
+setTimeout (async)
+(anonymous) @ workerMain.js:8
+_safeInvokeFunction @ workerMain.js:5
+_invokeFactory @ workerMain.js:5
+complete @ workerMain.js:5
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+f @ workerMain.js:5
+o @ workerMain.js:6
+_safeInvokeFunction @ workerMain.js:5
+_invokeFactory @ workerMain.js:5
+complete @ workerMain.js:5
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+n @ workerMain.js:6
+anonymous @ editorSimpleWorker.nls.js:3
+(anonymous) @ workerMain.js:4
+Promise.then (async)
+load @ workerMain.js:3
+load @ workerMain.js:3
+L @ workerMain.js:5
+_loadModule @ workerMain.js:5
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+_relativeRequire @ workerMain.js:5
+l @ workerMain.js:5
+m @ workerMain.js:6
+_loadPluginDependency @ workerMain.js:5
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+n @ workerMain.js:6
+ne @ workerMain.js:6
+(anonymous) @ workerMain.js:46
+(anonymous) @ workerMain.js:46
+workerMain.js:3 []
+v @ workerMain.js:3
+onError @ workerMain.js:3
+complete @ workerMain.js:5
+_onModuleComplete @ workerMain.js:6
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+n @ workerMain.js:6
+eval @ profileAnalysisWorker.js:3
+anonymous @ profileAnalysisWorker.js:8
+(anonymous) @ workerMain.js:4
+Promise.then (async)
+load @ workerMain.js:3
+load @ workerMain.js:3
+L @ workerMain.js:5
+_loadModule @ workerMain.js:5
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+g @ workerMain.js:6
+(anonymous) @ workerMain.js:46
+g @ workerMain.js:46
+d @ workerMain.js:46
+handleMessage @ workerMain.js:46
+k @ workerMain.js:46
+h @ workerMain.js:46
+handleMessage @ workerMain.js:46
+onmessage @ workerMain.js:46
+(anonymous) @ workerMain.js:8
+setTimeout (async)
+(anonymous) @ workerMain.js:8
+_safeInvokeFunction @ workerMain.js:5
+_invokeFactory @ workerMain.js:5
+complete @ workerMain.js:5
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+f @ workerMain.js:5
+o @ workerMain.js:6
+_safeInvokeFunction @ workerMain.js:5
+_invokeFactory @ workerMain.js:5
+complete @ workerMain.js:5
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+n @ workerMain.js:6
+anonymous @ editorSimpleWorker.nls.js:3
+(anonymous) @ workerMain.js:4
+Promise.then (async)
+load @ workerMain.js:3
+load @ workerMain.js:3
+L @ workerMain.js:5
+_loadModule @ workerMain.js:5
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+_relativeRequire @ workerMain.js:5
+l @ workerMain.js:5
+m @ workerMain.js:6
+_loadPluginDependency @ workerMain.js:5
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+n @ workerMain.js:6
+ne @ workerMain.js:6
+(anonymous) @ workerMain.js:46
+(anonymous) @ workerMain.js:46
+workbench.desktop.main.js:655   ERR [Extension Host] Cannot find en-us, defaulting to en
+workbench.desktop.main.js:138 [Extension Host] Cannot find en-us, defaulting to en
+C @ workbench.desktop.main.js:138
+$logExtensionHostMessage @ workbench.desktop.main.js:1658
+S @ workbench.desktop.main.js:1658
+Q @ workbench.desktop.main.js:1658
+M @ workbench.desktop.main.js:1658
+L @ workbench.desktop.main.js:1658
+(anonymous) @ workbench.desktop.main.js:1658
+y @ workbench.desktop.main.js:89
+fire @ workbench.desktop.main.js:89
+fire @ workbench.desktop.main.js:615
+U.onmessage @ workbench.desktop.main.js:1673
+workbench.desktop.main.js:655   ERR [Extension Host] Cannot find en-us, defaulting to en
+workbench.desktop.main.js:138 [Extension Host] Cannot find en-us, defaulting to en
+C @ workbench.desktop.main.js:138
+$logExtensionHostMessage @ workbench.desktop.main.js:1658
+S @ workbench.desktop.main.js:1658
+Q @ workbench.desktop.main.js:1658
+M @ workbench.desktop.main.js:1658
+L @ workbench.desktop.main.js:1658
+(anonymous) @ workbench.desktop.main.js:1658
+y @ workbench.desktop.main.js:89
+fire @ workbench.desktop.main.js:89
+fire @ workbench.desktop.main.js:615
+U.onmessage @ workbench.desktop.main.js:1673
+workbench.desktop.main.js:655   ERR [Extension Host] Cannot find en-us, defaulting to en
+workbench.desktop.main.js:138 [Extension Host] Cannot find en-us, defaulting to en
+C @ workbench.desktop.main.js:138
+$logExtensionHostMessage @ workbench.desktop.main.js:1658
+S @ workbench.desktop.main.js:1658
+Q @ workbench.desktop.main.js:1658
+M @ workbench.desktop.main.js:1658
+L @ workbench.desktop.main.js:1658
+(anonymous) @ workbench.desktop.main.js:1658
+y @ workbench.desktop.main.js:89
+fire @ workbench.desktop.main.js:89
+fire @ workbench.desktop.main.js:615
+U.onmessage @ workbench.desktop.main.js:1673
+workbench.desktop.main.js:655  INFO Extension host (LocalProcess pid: 11020) is unresponsive.
+workbench.desktop.main.js:1673 Extension Host
+workbench.desktop.main.js:1673 Debugger attached.
+workbench.desktop.main.js:655  INFO UNRESPONSIVE extension host: starting to profile NOW
+workbench.desktop.main.js:655   ERR [Extension Host] Cannot find en-us, defaulting to en
+workbench.desktop.main.js:138 [Extension Host] Cannot find en-us, defaulting to en
+C @ workbench.desktop.main.js:138
+$logExtensionHostMessage @ workbench.desktop.main.js:1658
+S @ workbench.desktop.main.js:1658
+Q @ workbench.desktop.main.js:1658
+M @ workbench.desktop.main.js:1658
+L @ workbench.desktop.main.js:1658
+(anonymous) @ workbench.desktop.main.js:1658
+y @ workbench.desktop.main.js:89
+fire @ workbench.desktop.main.js:89
+fire @ workbench.desktop.main.js:615
+U.onmessage @ workbench.desktop.main.js:1673
+workbench.desktop.main.js:655  INFO Extension host (LocalProcess pid: 11020) is responsive.
+workbench.desktop.main.js:655  INFO UNRESPONSIVE extension host: received responsive event and cancelling profiling session
+workbench.desktop.main.js:138 [Extension Host] O11yReporter not initialized yet, skipping addition.
+workbench.desktop.main.js:138 [Extension Host] adding AppInsights reporter.
+workbench.desktop.main.js:138 [Extension Host] Apex Debugger Extension Activated
+workbench.desktop.main.js:138 [Extension Host] Setting up ISV Debugger environment variables
+workbench.desktop.main.js:138 [Extension Host] Apex Replay Debugger Extension Activated
+workerMain.js:3 The factory function of "vs/base/browser/window" has thrown an exception
+v @ workerMain.js:3
+onError @ workerMain.js:3
+complete @ workerMain.js:5
+_onModuleComplete @ workerMain.js:6
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+n @ workerMain.js:6
+eval @ profileAnalysisWorker.js:3
+anonymous @ profileAnalysisWorker.js:8
+(anonymous) @ workerMain.js:4
+Promise.then (async)
+load @ workerMain.js:3
+load @ workerMain.js:3
+L @ workerMain.js:5
+_loadModule @ workerMain.js:5
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+g @ workerMain.js:6
+(anonymous) @ workerMain.js:46
+g @ workerMain.js:46
+d @ workerMain.js:46
+handleMessage @ workerMain.js:46
+k @ workerMain.js:46
+h @ workerMain.js:46
+handleMessage @ workerMain.js:46
+onmessage @ workerMain.js:46
+(anonymous) @ workerMain.js:8
+setTimeout (async)
+(anonymous) @ workerMain.js:8
+_safeInvokeFunction @ workerMain.js:5
+_invokeFactory @ workerMain.js:5
+complete @ workerMain.js:5
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+f @ workerMain.js:5
+o @ workerMain.js:6
+_safeInvokeFunction @ workerMain.js:5
+_invokeFactory @ workerMain.js:5
+complete @ workerMain.js:5
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+n @ workerMain.js:6
+anonymous @ editorSimpleWorker.nls.js:3
+(anonymous) @ workerMain.js:4
+Promise.then (async)
+load @ workerMain.js:3
+load @ workerMain.js:3
+L @ workerMain.js:5
+_loadModule @ workerMain.js:5
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+_relativeRequire @ workerMain.js:5
+l @ workerMain.js:5
+m @ workerMain.js:6
+_loadPluginDependency @ workerMain.js:5
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+n @ workerMain.js:6
+ne @ workerMain.js:6
+(anonymous) @ workerMain.js:46
+(anonymous) @ workerMain.js:46
+workerMain.js:3 ReferenceError: window is not defined
+    at eval (profileAnalysisWorker.js:3:1798)
+    at t._safeInvokeFunction (workerMain.js:5:1248)
+    at t._invokeFactory (workerMain.js:5:1428)
+    at t.complete (workerMain.js:5:1685)
+    at v._onModuleComplete (workerMain.js:6:1051)
+    at v._resolve (workerMain.js:6:510)
+    at v.defineModule (workerMain.js:5:5564)
+    at n (workerMain.js:6:1745)
+    at eval (profileAnalysisWorker.js:3:1550)
+    at anonymous (profileAnalysisWorker.js:8:4534)
+v @ workerMain.js:3
+onError @ workerMain.js:3
+complete @ workerMain.js:5
+_onModuleComplete @ workerMain.js:6
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+n @ workerMain.js:6
+eval @ profileAnalysisWorker.js:3
+anonymous @ profileAnalysisWorker.js:8
+(anonymous) @ workerMain.js:4
+Promise.then (async)
+load @ workerMain.js:3
+load @ workerMain.js:3
+L @ workerMain.js:5
+_loadModule @ workerMain.js:5
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+g @ workerMain.js:6
+(anonymous) @ workerMain.js:46
+g @ workerMain.js:46
+d @ workerMain.js:46
+handleMessage @ workerMain.js:46
+k @ workerMain.js:46
+h @ workerMain.js:46
+handleMessage @ workerMain.js:46
+onmessage @ workerMain.js:46
+(anonymous) @ workerMain.js:8
+setTimeout (async)
+(anonymous) @ workerMain.js:8
+_safeInvokeFunction @ workerMain.js:5
+_invokeFactory @ workerMain.js:5
+complete @ workerMain.js:5
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+f @ workerMain.js:5
+o @ workerMain.js:6
+_safeInvokeFunction @ workerMain.js:5
+_invokeFactory @ workerMain.js:5
+complete @ workerMain.js:5
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+n @ workerMain.js:6
+anonymous @ editorSimpleWorker.nls.js:3
+(anonymous) @ workerMain.js:4
+Promise.then (async)
+load @ workerMain.js:3
+load @ workerMain.js:3
+L @ workerMain.js:5
+_loadModule @ workerMain.js:5
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+_relativeRequire @ workerMain.js:5
+l @ workerMain.js:5
+m @ workerMain.js:6
+_loadPluginDependency @ workerMain.js:5
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+n @ workerMain.js:6
+ne @ workerMain.js:6
+(anonymous) @ workerMain.js:46
+(anonymous) @ workerMain.js:46
+workerMain.js:3 Here are the modules that depend on it:
+v @ workerMain.js:3
+onError @ workerMain.js:3
+complete @ workerMain.js:5
+_onModuleComplete @ workerMain.js:6
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+n @ workerMain.js:6
+eval @ profileAnalysisWorker.js:3
+anonymous @ profileAnalysisWorker.js:8
+(anonymous) @ workerMain.js:4
+Promise.then (async)
+load @ workerMain.js:3
+load @ workerMain.js:3
+L @ workerMain.js:5
+_loadModule @ workerMain.js:5
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+g @ workerMain.js:6
+(anonymous) @ workerMain.js:46
+g @ workerMain.js:46
+d @ workerMain.js:46
+handleMessage @ workerMain.js:46
+k @ workerMain.js:46
+h @ workerMain.js:46
+handleMessage @ workerMain.js:46
+onmessage @ workerMain.js:46
+(anonymous) @ workerMain.js:8
+setTimeout (async)
+(anonymous) @ workerMain.js:8
+_safeInvokeFunction @ workerMain.js:5
+_invokeFactory @ workerMain.js:5
+complete @ workerMain.js:5
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+f @ workerMain.js:5
+o @ workerMain.js:6
+_safeInvokeFunction @ workerMain.js:5
+_invokeFactory @ workerMain.js:5
+complete @ workerMain.js:5
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+n @ workerMain.js:6
+anonymous @ editorSimpleWorker.nls.js:3
+(anonymous) @ workerMain.js:4
+Promise.then (async)
+load @ workerMain.js:3
+load @ workerMain.js:3
+L @ workerMain.js:5
+_loadModule @ workerMain.js:5
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+_relativeRequire @ workerMain.js:5
+l @ workerMain.js:5
+m @ workerMain.js:6
+_loadPluginDependency @ workerMain.js:5
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+n @ workerMain.js:6
+ne @ workerMain.js:6
+(anonymous) @ workerMain.js:46
+(anonymous) @ workerMain.js:46
+workerMain.js:3 []
+v @ workerMain.js:3
+onError @ workerMain.js:3
+complete @ workerMain.js:5
+_onModuleComplete @ workerMain.js:6
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+n @ workerMain.js:6
+eval @ profileAnalysisWorker.js:3
+anonymous @ profileAnalysisWorker.js:8
+(anonymous) @ workerMain.js:4
+Promise.then (async)
+load @ workerMain.js:3
+load @ workerMain.js:3
+L @ workerMain.js:5
+_loadModule @ workerMain.js:5
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+g @ workerMain.js:6
+(anonymous) @ workerMain.js:46
+g @ workerMain.js:46
+d @ workerMain.js:46
+handleMessage @ workerMain.js:46
+k @ workerMain.js:46
+h @ workerMain.js:46
+handleMessage @ workerMain.js:46
+onmessage @ workerMain.js:46
+(anonymous) @ workerMain.js:8
+setTimeout (async)
+(anonymous) @ workerMain.js:8
+_safeInvokeFunction @ workerMain.js:5
+_invokeFactory @ workerMain.js:5
+complete @ workerMain.js:5
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+f @ workerMain.js:5
+o @ workerMain.js:6
+_safeInvokeFunction @ workerMain.js:5
+_invokeFactory @ workerMain.js:5
+complete @ workerMain.js:5
+_onModuleComplete @ workerMain.js:6
+_onModuleComplete @ workerMain.js:6
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+n @ workerMain.js:6
+anonymous @ editorSimpleWorker.nls.js:3
+(anonymous) @ workerMain.js:4
+Promise.then (async)
+load @ workerMain.js:3
+load @ workerMain.js:3
+L @ workerMain.js:5
+_loadModule @ workerMain.js:5
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+_relativeRequire @ workerMain.js:5
+l @ workerMain.js:5
+m @ workerMain.js:6
+_loadPluginDependency @ workerMain.js:5
+_resolve @ workerMain.js:6
+defineModule @ workerMain.js:5
+n @ workerMain.js:6
+ne @ workerMain.js:6
+(anonymous) @ workerMain.js:46
+(anonymous) @ workerMain.js:46
+workbench.desktop.main.js:138 [Extension Host] [node.js fs] readdir with filetypes failed with error:  Error: ENOENT: no such file or directory, scandir 'c:\Users\g.shankar\Documents\GitHub\apex-perf-project\.sfdx\tools\vector-db'
+C @ workbench.desktop.main.js:138
+$logExtensionHostMessage @ workbench.desktop.main.js:1658
+S @ workbench.desktop.main.js:1658
+Q @ workbench.desktop.main.js:1658
+M @ workbench.desktop.main.js:1658
+L @ workbench.desktop.main.js:1658
+(anonymous) @ workbench.desktop.main.js:1658
+y @ workbench.desktop.main.js:89
+fire @ workbench.desktop.main.js:89
+fire @ workbench.desktop.main.js:615
+U.onmessage @ workbench.desktop.main.js:1673
+workbench.desktop.main.js:655   ERR [Extension Host] handleActivationError: No Default Org Set identified: Error: No default org is set. Run "SFDX: Create a Default Scratch Org" or "SFDX: Authorize an Org" to set one.
+	at t.getConnection (c:\Users\g.shankar\.vscode\extensions\salesforce.salesforcedx-vscode-core-63.6.0\dist\src\index.js:1184:29604)
+	at t.getConnection (c:\Users\g.shankar\.vscode\extensions\salesforce.salesforcedx-vscode-core-63.6.0\dist\src\index.js:1319:7418)
+	at t.getWorkspaceOrgId (c:\Users\g.shankar\.vscode\extensions\salesforce.salesforcedx-einstein-gpt-1.11.0-with-eslint\dist\index.js:150:14648)
+	at t.initialize (c:\Users\g.shankar\.vscode\extensions\salesforce.salesforcedx-einstein-gpt-1.11.0-with-eslint\dist\index.js:335:13476)
+	at t.enable (c:\Users\g.shankar\.vscode\extensions\salesforce.salesforcedx-einstein-gpt-1.11.0-with-eslint\dist\index.js:335:22593)
+	at t.initialize (c:\Users\g.shankar\.vscode\extensions\salesforce.salesforcedx-einstein-gpt-1.11.0-with-eslint\dist\index.js:335:22497)
+	at Sfe (c:\Users\g.shankar\.vscode\extensions\salesforce.salesforcedx-einstein-gpt-1.11.0-with-eslint\dist\index.js:335:28205)
+	at async a.n (c:\Users\g.shankar\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\api\node\extensionHostProcess.js:143:6361)
+	at async a.m (c:\Users\g.shankar\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\api\node\extensionHostProcess.js:143:6324)
+	at async a.l (c:\Users\g.shankar\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\api\node\extensionHostProcess.js:143:5781)
+workbench.desktop.main.js:138 [Extension Host] handleActivationError: No Default Org Set identified: Error: No default org is set. Run "SFDX: Create a Default Scratch Org" or "SFDX: Authorize an Org" to set one.
+	at t.getConnection (c:\Users\g.shankar\.vscode\extensions\salesforce.salesforcedx-vscode-core-63.6.0\dist\src\index.js:1184:29604)
+	at t.getConnection (c:\Users\g.shankar\.vscode\extensions\salesforce.salesforcedx-vscode-core-63.6.0\dist\src\index.js:1319:7418)
+	at t.getWorkspaceOrgId (c:\Users\g.shankar\.vscode\extensions\salesforce.salesforcedx-einstein-gpt-1.11.0-with-eslint\dist\index.js:150:14648)
+	at t.initialize (c:\Users\g.shankar\.vscode\extensions\salesforce.salesforcedx-einstein-gpt-1.11.0-with-eslint\dist\index.js:335:13476)
+	at t.enable (c:\Users\g.shankar\.vscode\extensions\salesforce.salesforcedx-einstein-gpt-1.11.0-with-eslint\dist\index.js:335:22593)
+	at t.initialize (c:\Users\g.shankar\.vscode\extensions\salesforce.salesforcedx-einstein-gpt-1.11.0-with-eslint\dist\index.js:335:22497)
+	at Sfe (c:\Users\g.shankar\.vscode\extensions\salesforce.salesforcedx-einstein-gpt-1.11.0-with-eslint\dist\index.js:335:28205)
+	at async a.n (c:\Users\g.shankar\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\api\node\extensionHostProcess.js:143:6361)
+	at async a.m (c:\Users\g.shankar\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\api\node\extensionHostProcess.js:143:6324)
+	at async a.l (c:\Users\g.shankar\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\api\node\extensionHostProcess.js:143:5781)
+C @ workbench.desktop.main.js:138
+$logExtensionHostMessage @ workbench.desktop.main.js:1658
+S @ workbench.desktop.main.js:1658
+Q @ workbench.desktop.main.js:1658
+M @ workbench.desktop.main.js:1658
+L @ workbench.desktop.main.js:1658
+(anonymous) @ workbench.desktop.main.js:1658
+y @ workbench.desktop.main.js:89
+fire @ workbench.desktop.main.js:89
+fire @ workbench.desktop.main.js:615
+U.onmessage @ workbench.desktop.main.js:1673
+workbench.desktop.main.js:138 [Extension Host] salesforce.salesforcedx-einstein-gpt enabled: (no default org set) undefined
+workbench.desktop.main.js:138 [Extension Host] Project is not for ISV Debugger
+workbench.desktop.main.js:138 [Extension Host] Deleted environment variables SF_TARGET_ORG and SF_ORG_INSTANCE_URL
